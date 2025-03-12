@@ -8,7 +8,8 @@ import remarkGfm from "remark-gfm";
 import {FaClock} from "react-icons/fa"; // GitHub Flavored Markdown
 
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
+export default async function BlogPost(props: { params: Promise<{ slug: string }> }) {
+    const params = await props.params;
     const filePath = path.join(process.cwd(), "src/app/posts", `${params.slug}.md`);
     const fileContent = fs.readFileSync(filePath, "utf8");
 
