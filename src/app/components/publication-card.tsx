@@ -1,14 +1,12 @@
 import {
     FaRegFileAlt,
-    FaEnvelope,
     FaGithub,
-    FaFacebook,
-    FaInstagram,
-    FaYoutube,
     FaExternalLinkAlt,
-    FaRegEnvelope
+    FaRegEnvelope,
+    FaUniversity,
+    FaAward,
+    FaCalendarAlt
 } from "react-icons/fa";
-import { FaAward, FaCalendarAlt } from "react-icons/fa";
 import { Key } from "react";
 
 
@@ -59,8 +57,10 @@ const Card = ({
                 </div>
 
                 {type && (
-                    <h6 className={"text-xs uppercase text-gray-600"}>{type}</h6>
+                    <h6 className={"text-xs uppercase text-gray-600"}>{type}
+                    </h6>
                 )}
+
 
                 <h2 className="mb-0.5 text-2xl font-bold leading-8 tracking-tight">{title}</h2>
 
@@ -78,9 +78,16 @@ const Card = ({
                     </div>
                 )}
 
-                <div className="mb-5 text-xs flex items-center text-gray-400">
-                    <FaCalendarAlt></FaCalendarAlt>&nbsp;&nbsp;
-                    {publishedDate}
+                <div className={"mb-5 text-xs text-gray-400"}>
+                    <div className="mb-2 flex items-center">
+                        <FaCalendarAlt></FaCalendarAlt>&nbsp;&nbsp;
+                        {publishedDate}
+                    </div>
+
+                    <div className="mb-2 flex items-center">
+                        <FaUniversity></FaUniversity>&nbsp;&nbsp;
+                        {publisher}
+                    </div>
                 </div>
 
                 <div className="flex flex-wrap gap-2 text-xs text-gray-400">
