@@ -36,7 +36,9 @@ export default function Publications() {
             publisher: data.publisher,
             email: data.email,
         }
-    });
+    })
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()); // Sorting newest to oldest
+
 
     return (
     <>
@@ -62,11 +64,13 @@ export default function Publications() {
                         title={post.title}
                         abstract={post.description}
                         publishedDate={post.date}
+                        publisher={post.publisher}
                         award={post.award}
                         authors={post.authors}
                         tags={post.tags}
                         type={post.type}
                         email={post.email}
+                        doi={post.doi}
                         />
                     ))}
                 </div>

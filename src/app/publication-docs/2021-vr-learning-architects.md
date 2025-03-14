@@ -1,0 +1,12 @@
+---
+title: 'Virtual Reality-Based Immersive Digital Learning Resources: Initial Study of the Design Features Perception from Future Architects'
+authors: "Mareta, S., Hung-Lo-Sang, L.L.K, Tedjosaputro, M.A., Hadian, G.S., Rivero, R. and Thenara, J.M."
+publishedAt: '2021-12-05'
+publisher: '2021 IEEE International Conference on Engineering, Technology & Education (TALE)'
+description: 'Increasing demands and needs of utilizing Virtual Reality (VR) technologies have pushed many commercial and non-commercial industries and institutions to innovate, including in the education sector. This paper presents a preliminary study of understanding the perception of undergraduate Architecture students in the first Sino-Foreign University in China of various design features. '
+tags: "virtual reality, design features, VR for architecture, correlation matrix"
+abstract: "Increasing demands and needs of utilizing Virtual Reality (VR) technologies have pushed many commercial and non-commercial industries and institutions to innovate, including in the education sector. This paper presents a preliminary study of understanding the perception of undergraduate Architecture students in the first Sino-Foreign University in China of various design features. These features were selected on the basis of their functionalities in the VR environment development context, e.g. a VR scene or site that can be visited as part of the learning process within the discipline. Hence, the participants were asked to evaluate the importance of each design feature, after experiencing a VR scene created under a university-scale project, namely V-ROOM. Results obtained from this study are hoped to provide future recommendations for numerous stakeholders working in or pursuing the architecture field, including students, educators, and architects. It is interesting to find that amongst fourteen design features investigated in this work, collaborative real-time editing, object/model scaling, and texture modification appeared to receive the highest ratings from the participants, and hence are the most crucial features to be considered in the design process. Furthermore, correlation matrix is also produced to investigate the relationship between these features."
+type: "Conference Article"
+email: "josephthenara@outlook.com"
+doi: "https://doi.org/10.1109/TALE52509.2021.9678682"
+---

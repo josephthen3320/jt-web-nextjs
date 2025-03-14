@@ -1,0 +1,11 @@
+---
+title: 'Understanding the Cybersickness Effects of Using Virtual Reality-Based Classroom for Undergraduate Students: A Preliminary Study'
+authors: "Mareta, S., Mou, X., Nelson, H., Tan-Mullins, M., Thenara, J.M. and Rivero, R."
+publishedAt: '2021-07-05'
+publisher: '2021 International Conference on Open and Innovative Education (ICOIE)'
+description: 'Motion sickness, as one of the long-standing key challenges of VR utilization, even in gaming, often becomes a barrier for VR users to fully engage with the content developed in the virtual world. Thus, this work presents a preliminary study on understanding the symptoms of motion sickness — which will be referred to later as ‘cybersickness’ — in the teaching and learning (T&L) context.'
+tags: "V-ROOM, virtual reality, cybersickness, motion sickness, teaching and learning, education technology"
+abstract: "Increasing demands and needs of utilizing Virtual Reality (VR) technologies have pushed many commercial and non-commercial industries and institutions to innovate, including in the education sector. This paper presents a preliminary study of understanding the perception of undergraduate Architecture students in the first Sino-Foreign University in China of various design features. These features were selected on the basis of their functionalities in the VR environment development context, e.g. a VR scene or site that can be visited as part of the learning process within the discipline. Hence, the participants were asked to evaluate the importance of each design feature, after experiencing a VR scene created under a university-scale project, namely V-ROOM. Results obtained from this study are hoped to provide future recommendations for numerous stakeholders working in or pursuing the architecture field, including students, educators, and architects. It is interesting to find that amongst fourteen design features investigated in this work, collaborative real-time editing, object/model scaling, and texture modification appeared to receive the highest ratings from the participants, and hence are the most crucial features to be considered in the design process. Furthermore, correlation matrix is also produced to investigate the relationship between these features."
+type: "Conference Article"
+email: "josephthenara@outlook.com"
+---

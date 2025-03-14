@@ -5,9 +5,10 @@ import {
     FaRegEnvelope,
     FaUniversity,
     FaAward,
-    FaCalendarAlt
+    FaCalendarAlt, FaExternalLinkSquareAlt
 } from "react-icons/fa";
 import { Key } from "react";
+import {FaUpRightFromSquare} from "react-icons/fa6";
 
 
 const Card = ({
@@ -31,17 +32,8 @@ const Card = ({
                                 </a>
                             </div>
                         )}
-                        {doi && (
-                            <div className="mx-1.5">
-                                <a
-                                    href={doi}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    <FaGithub className="text-xl text-gray-500 transition duration-200 hover:rotate-180 hover:text-blue-400" />
-                                </a>
-                            </div>
-                        )}
+
+                        {/* Email contact */}
                         {email && (
                             <div className="mx-1.5">
                                 <a
@@ -53,31 +45,47 @@ const Card = ({
                                 </a>
                             </div>
                         )}
+                        {doi && (
+                            <div className="mx-1.5">
+                                <a
+                                    href={doi}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <FaUpRightFromSquare className="text-xl text-gray-500 transition duration-200 hover:rotate-180 hover:text-blue-400" />
+                                </a>
+                            </div>
+                        )}
                     </div>
                 </div>
 
+                {/* Publication Type */}
                 {type && (
                     <h6 className={"text-xs uppercase text-gray-600"}>{type}
                     </h6>
                 )}
 
-
+                {/* Publication Title*/}
                 <h2 className="mb-0.5 text-2xl font-bold leading-8 tracking-tight">{title}</h2>
 
+                {/* Author List */}
                 {authors && (
                     <h3 className={"mb-3 text-sm leading-8 tracking-tight"}>
                         {authors}
                     </h3>
                 )}
 
+                {/* Publication Description*/}
                 <p className="prose text-sm mb-3 max-w-none text-gray-500 dark:text-gray-400">{abstract}</p>
 
+                {/* Publication Awards */}
                 {award && (
                     <div className={"mb-3 text-xs flex items-center"}>
                         <FaAward></FaAward>&nbsp;&nbsp;{award}
                     </div>
                 )}
 
+                {/* Publishing Metadata (Date & Publisher) */}
                 <div className={"mb-5 text-xs text-gray-400"}>
                     <div className="mb-2 flex items-center">
                         <FaCalendarAlt></FaCalendarAlt>&nbsp;&nbsp;
@@ -90,6 +98,7 @@ const Card = ({
                     </div>
                 </div>
 
+                {/* Publication Tags Parsing */}
                 <div className="flex flex-wrap gap-2 text-xs text-gray-400">
                     {tags.split(",")
                         .map((tag: string, index: Key | null | undefined) => (
