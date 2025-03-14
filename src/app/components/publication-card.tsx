@@ -14,7 +14,7 @@ import { Key } from "react";
 
 const Card = ({
                   title, abstract, publishedDate, publisher, authors, type, award, doi, href, tags, email }: any) => (
-    <div className="md p-4 md:w-1/2" style={{ maxWidth: '544px' }}>
+    <div className="md p-4">
         <div className="h-full transform overflow-hidden rounded-md border-2 border-solid border-gray-200 bg-transparent bg-opacity-20 transition duration-500 hover:scale-105 hover:rounded-md hover:border-primary-500 hover:bg-gray-300 dark:border-gray-700 dark:hover:border-primary-500 dark:hover:bg-gray-800">
             <div className="p-6">
                 <div className="mb-3 flex flex-row items-center justify-between">
@@ -83,18 +83,16 @@ const Card = ({
                     {publishedDate}
                 </div>
 
-                <div className="flex flex-row justify-between">
-                    <div className="text-xs text-gray-400">
-                        {tags.split(",")
-                            .map((tag: string, index: Key | null | undefined) => (
-                                <span
-                                    key={index}
-                                    className="mr-2 rounded-lg border border-pink-600 py-1 px-3 text-xs font-medium text-pink-600 uppercase transition duration-500 ease-in-out hover:bg-pink-600 hover:text-gray-100 dark:hover:text-gray-900"
-                                >
-                                      {tag.trim()} {/* Trim to remove any extra spaces */}
-                                    </span>
-                            ))}
-                    </div>
+                <div className="flex flex-wrap gap-2 text-xs text-gray-400">
+                    {tags.split(",")
+                        .map((tag: string, index: Key | null | undefined) => (
+                            <span
+                                key={index}
+                                className="inline-flex items-center justify-center rounded-lg border border-pink-600 py-1 px-3 text-xs font-medium text-pink-600 uppercase transition duration-500 ease-in-out hover:bg-pink-600 hover:text-gray-100 dark:hover:text-gray-900"
+                            >
+                                {tag.trim()} {/* Trim to remove any extra spaces */}
+                            </span>
+                        ))}
                 </div>
             </div>
         </div>
