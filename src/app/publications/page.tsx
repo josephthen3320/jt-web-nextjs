@@ -15,7 +15,10 @@ export const metadata: Metadata = {
 
 export default function Publications() {
     const pubDir = path.join(process.cwd(), "src/app/publication-docs");
-    const filenames = fs.readdirSync(pubDir);
+    const filenames = fs.readdirSync(pubDir).filter((filename) => {
+        const filePath = path.join(pubDir, filename);
+        return fs.statSync(filePath).isFile() && filename.endsWith(".md");
+    });
 
     const pubDocs = filenames.map((filename) => {
         const filePath = path.join(pubDir, filename);
