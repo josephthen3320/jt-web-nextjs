@@ -26,7 +26,6 @@ export default function Projects() {
         const { data } = matter(fileContent);
 
         return {
-            key: filename.replace(".md", ""),
             title: data.title,
             description: data.description,
             award: data.award,
@@ -61,7 +60,8 @@ export default function Projects() {
                 <div className="container py-12">
                     <div className="-m-4 flex flex-wrap">
                         {projects.map((proj) => (
-                            <Card key={proj.key} {...proj} />
+                            // eslint-disable-next-line react/jsx-key
+                            <Card {...proj} />
                         ))}
                     </div>
                 </div>
