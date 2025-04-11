@@ -1,22 +1,31 @@
 'use client';
 
 import { useState } from "react";
-import { Metadata } from "next";
 import {
     FaEnvelope,
     FaGithub,
     FaLinkedin,
     FaPhone,
     FaGlobe,
-    FaWeixin,
+    FaWeixin, FaWhatsapp,
 } from "react-icons/fa";
 import Image from "next/image";
 
 const contacts = [
     {
+        label: "Website",
+        href: "https://josephthen.vercel.app",
+        icon: <FaGlobe />,
+    },
+    {
         label: "Email Me",
         href: "mailto:josephthenara@outlook.com",
         icon: <FaEnvelope />,
+    },
+    {
+        label: "LinkedIn",
+        href: "https://linkedin.com/in/josephthenara",
+        icon: <FaLinkedin />,
     },
     {
         label: "GitHub",
@@ -24,19 +33,9 @@ const contacts = [
         icon: <FaGithub />,
     },
     {
-        label: "LinkedIn",
-        href: "https://www.linkedin.com/in/josephthenara",
-        icon: <FaLinkedin />,
-    },
-    {
-        label: "Portfolio",
-        href: "https://josephthen.vercel.app",
-        icon: <FaGlobe />,
-    },
-    {
-        label: "Call Me",
-        href: "tel:+8617132060751",
-        icon: <FaPhone />,
+        label: "WhatsApp",
+        href: "https://wa.me/85267693854",
+        icon: <FaWhatsapp />,
     },
 ];
 
@@ -44,12 +43,23 @@ export default function ContactPage() {
     const [showWechatModal, setShowWechatModal] = useState(false);
 
     return (
-        <div className="flex flex-col items-center justify-center px-6 py-12 text-center">
+        <div className="flex flex-col items-center justify-center px-6 text-center">
+            {/* 🖼️ Your Photo */}
+            <div className="mb-4">
+                <Image
+                    src="/namecard/photo_josephthen.png"
+                    alt="Joseph Thenara"
+                    width={100}
+                    height={100}
+                    className="rounded-full border-4 border-white dark:border-gray-700 shadow-md"
+                />
+            </div>
+
             <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-2">
                 Joseph Thenara
             </h1>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
-                IB Computer Science Educator • Software Developer
+                Educator • Computer Scientist • Ailurophile
             </p>
 
             <div className="w-full max-w-sm space-y-4">
@@ -69,16 +79,12 @@ export default function ContactPage() {
                 {/* WeChat button */}
                 <button
                     onClick={() => setShowWechatModal(true)}
-                    className="flex items-center justify-center gap-3 w-full px-6 py-3 text-lg font-medium rounded-lg bg-green-500 text-white shadow hover:bg-green-600 transition"
+                    className="flex items-center justify-center gap-3 w-full px-6 py-3 text-lg font-medium rounded-lg bg-gray-800 text-white shadow hover:bg-green-600 transition"
                 >
                     <FaWeixin />
                     WeChat
                 </button>
             </div>
-
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-6">
-                This is a mobile-friendly contact card — scan the QR code or save this link!
-            </p>
 
             {/* Modal */}
             {showWechatModal && (
