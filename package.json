@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.16",
+    "@uiw/react-md-editor": "^4.0.5",
     "autoprefixer": "^10.4.21",
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
