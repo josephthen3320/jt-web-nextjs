@@ -4,6 +4,7 @@ author: 'Joseph Then'
 publishedAt: '2025-03-11'
 description: 'This is the start of my musing between immersive tech, caffeine-fueled coding, and a love for cats.'
 tags: "Article, Meow"
+category: "Musings"
 ---
 
 *Meow World!*

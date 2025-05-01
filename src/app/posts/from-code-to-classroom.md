@@ -5,6 +5,7 @@ publishedAt: '2025-03-12'
 description: 'Stepping into the world of education after years in the IT industry has been both exhilarating and humbling. 
 I find myself at the intersection of my passion for technology and my desire to inspire the next generation of problem-solvers and innovators.'
 tags: "Education, Teaching, IBCS"
+category: "Musings"
 ---
 
 ![](https://josephthen3320.github.io/img/photos/notts_hope_06.jpg)
