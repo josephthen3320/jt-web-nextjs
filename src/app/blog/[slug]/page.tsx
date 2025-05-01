@@ -44,7 +44,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
 
 
             {/* Show estimated reading time */}
-            <div className="mb-8 flex justify-end">
+            <div className="mb-2 flex justify-end">
                 <p className="text-gray-600 text-xs flex items-center">
                     <FaClock className="mr-1" />
                     {readingTime} min
@@ -55,6 +55,21 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
                 className="mt-4 prose text-gray-400 prose-invert"
                 dangerouslySetInnerHTML={{ __html: contentHtml }}
             />
+
+
+
+            {data.updatedAt && (
+                <div className="mt-16 flex">
+                    <p className="text-gray-600 text-xs flex items-center">
+                        <>
+                            <span className={''}><b>Last updated:</b> &nbsp;</span>
+                            <time dateTime={data.updatedAt} className={"text-gray-400"}>
+                                { format(parseISO(data.updatedAt), "LLLL d, yyyy") }
+                            </time>
+                        </>
+                    </p>
+                </div>
+            )}
         </div>
     );
 }
