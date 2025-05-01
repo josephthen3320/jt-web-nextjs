@@ -22,7 +22,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
 
     // Calculate estimated reading time (assume 200 words per minutes.
     const wordCount = content.split(/\s+/).length;       // Count words
-    const readingTime =  Math.ceil(wordCount / 200);            // Calculate reading time (rounded up)
+    const readingTime =  Math.ceil(wordCount / 120);            // Calculate reading time (rounded up)
 
     return (
         <div className="max-w-2xl mx-auto p-5">
@@ -33,8 +33,12 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
                 <h1 className="text-3xl font-bold mb-2">{data.title}</h1>
                 <p className={"text-gray-600 text-sm mb-2"}>
                     <span className={"text-gray-400"}>by</span> <span className={"text-blue-500"}>{data.author}</span>
-                    &nbsp; <b>/</b> &nbsp;
-                    <span className={"text-gray-400"}>in</span> <span className={"text-blue-500"}>data.category</span>
+                    {data.category && (
+                        <>
+                            &nbsp; <b>/</b> &nbsp;
+                            <span className={"text-gray-400"}>in</span> <span className={"text-blue-500"}>{data.category}</span>
+                        </>
+                    )}
                 </p>
             </div>
 
