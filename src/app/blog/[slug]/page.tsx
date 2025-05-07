@@ -20,7 +20,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
         .process(content);
     const contentHtml = processedContent.toString();
 
-    // Calculate estimated reading time (assume 200 words per minutes.
+    // Calculate estimated reading time (assume 200 words per minutes.)
     const wordCount = content.split(/\s+/).length;       // Count words
     const readingTime =  Math.ceil(wordCount / 120);            // Calculate reading time (rounded up)
 
