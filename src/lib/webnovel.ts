@@ -24,14 +24,17 @@ export async function getNovelData(slug: string): Promise<NovelData> {
             .filter(file => file.endsWith('.md'));
 
         const chapters = await Promise.all(chapterFiles.map(async (file) => {
+            const chapterSlug = file.replace(/\.md$/, '');
             return {
-                slug: file.replace(/\.md$/, ''),
+                slug: chapterSlug,
                 volume: volume,
+                chapterAlias: metaData.volumes?.[volume]?.chapters?.[chapterSlug]?.alias || null
             };
         }));
 
         return {
             slug: volume,
+            volumeAlias: metaData.volumes?.[volume]?.alias || null,
             chapters: chapters.sort((a, b) => a.slug.localeCompare(b.slug))
         };
     }));
@@ -43,34 +46,25 @@ export async function getNovelData(slug: string): Promise<NovelData> {
     };
 }
 
-export async function getChapterData(
-    novelSlug: string,
-    volumeSlug: string,
-    chapterSlug: string
-): Promise<ChapterData> {
-    const fullPath = path.join(contentDirectory, novelSlug, volumeSlug, `${chapterSlug}.md`);
-    const fileContents = await fs.readFile(fullPath, 'utf8');
+export async function getChapterData(title: string, volume: string, chapter: string): Promise<ChapterData> {
+    const filePath = path.join(process.cwd(), 'src', 'content', 'webnovels', title, volume, `${chapter}.md`);
+    const fileContent = await fs.readFile(filePath, 'utf8');
+    const { data, content } = matter(fileContent);
 
-    const matterResult = matter(fileContents);
-    const processedContent = await remark()
-        .use(html)
-        .process(matterResult.content);
+    const processedContent = await remark().use(html).process(content);
     const contentHtml = processedContent.toString();
 
-    const allChapters = (await fs.readdir(path.join(contentDirectory, novelSlug, volumeSlug)))
-        .filter(file => file.endsWith('.md'))
-        .map(file => file.replace(/\.md$/, ''))
-        .sort();
-
-    const currentIndex = allChapters.indexOf(chapterSlug);
-
     return {
-        novelSlug,
-        volumeSlug,
-        chapterSlug,
+        chapterSlug: "", novelSlug: "", volumeSlug: "",
+        title: data.title,
+        slug: data.slug || chapter,
         contentHtml,
-        title: matterResult.data.title,
-        prevChapter: currentIndex > 0 ? allChapters[currentIndex - 1] : undefined,
-        nextChapter: currentIndex < allChapters.length - 1 ? allChapters[currentIndex + 1] : undefined,
+        chapter: Number(data.chapter),
+        volume: Number(data.volume),
+        prevChapter: data.prevChapter || null,
+        nextChapter: data.nextChapter || null,
+        chapterAlias: data.chapterAlias,
+        volumeAlias: data.volumeAlias,
+        series: data.series
     };
 }
