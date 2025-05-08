@@ -63,8 +63,9 @@ export async function getChapterData(title: string, volume: string, chapter: str
         volume: Number(data.volume),
         prevChapter: data.prevChapter || null,
         nextChapter: data.nextChapter || null,
-        chapterAlias: data.chapterAlias,
-        volumeAlias: data.volumeAlias,
-        series: data.series
+        chapterAlias: data.chapterAlias || "Chapter",
+        volumeAlias: data.volumeAlias || "Volume",
+        series: data.series || null,
+        publishedAt: data.publishedAt || null,
     };
 }

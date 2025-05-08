@@ -1,10 +1,12 @@
 export interface ChapterInfo {
+    title: string;
     slug: string;
     volume: string;
     chapter?: number; // Optional, allows for future use
 }
 
 export interface VolumeInfo {
+    title: string;
     slug: string;
     chapters: ChapterInfo[];
     volume?: number;         // Optional numeric volume value
@@ -13,6 +15,7 @@ export interface VolumeInfo {
 }
 
 export interface NovelData {
+    updatedAt: string;
     slug: string;
     title: string;
     author: string;
@@ -32,6 +35,7 @@ export interface ChapterData {
     prevChapter?: string;
     nextChapter?: string;
     series: string;
+    publishedAt: string;
 
     volume?: number;
     chapter?: number;

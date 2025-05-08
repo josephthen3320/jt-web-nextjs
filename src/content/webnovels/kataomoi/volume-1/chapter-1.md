@@ -8,6 +8,7 @@ chapterAlias: "Chapter"
 prevChapter: ""
 nextChapter: "chapter-2"
 series: "Kataomoi - Unrequited Love"
+publishedAt: "2025-05-07"
 ---
 “I just needed you to know,” 
 
