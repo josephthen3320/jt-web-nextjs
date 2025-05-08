@@ -10,8 +10,9 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
     const { title } = await params;
+    const novel = await getNovelData(title);
     return {
-        title: `${title} - Novel Overview`,
+        title: `${novel.title} | Joseph Thenara`,
         description: `View details and chapters for ${title}`
     };
 }
@@ -81,8 +82,10 @@ export default async function NovelPage({ params }: Props) {
                 </div>
 
                 {/* Synopsis */}
-                <div className="prose dark:prose-invert bg-white dark:bg-gray-900 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                    <h3 className="text-lg font-semibold mb-2">Synopsis</h3>
+                <div className="bg-white dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-700 w-full max-w-none">
+                    <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
+                        Synopsis
+                    </h3>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                         {novel.description}
                     </p>
@@ -115,7 +118,7 @@ export default async function NovelPage({ params }: Props) {
                             </span>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        <div className="grid grid-cols-1 md:grid-cols-1">
                             {volume.chapters.map((chapter) => (
                                 <a
                                     key={chapter.slug}

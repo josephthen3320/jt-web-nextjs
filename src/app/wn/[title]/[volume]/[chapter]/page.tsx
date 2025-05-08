@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getChapterData, getNovelList } from '@/lib/webnovel';
+import {getChapterData, getNovelData, getNovelList} from '@/lib/webnovel';
 import type { ChapterData } from '@/types/webnovel';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
@@ -14,10 +14,12 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props) {
-    const { title } = await params;
+    const { title, volume, chapter } = await params;
+    const novel = await getNovelData(title);
+    const chapterData = await getChapterData(title, volume, chapter);
     return {
-        title: `${title} - Chapter Page`,
-        description: `Read ${title} chapter on our platform`,
+        title: `${novel.title} - ${chapterData.chapterAlias} ${chapter.split('-')[1]} | Joseph Thenara`,
+        description: `Read ${novel.title} chapter on our platform`,
     };
 }
 

@@ -1,28 +1,27 @@
 export interface ChapterInfo {
-    title: string;
     slug: string;
-    volume: string;
-    chapter?: number; // Optional, allows for future use
+    title?: string;
+    volume: number; // Changed to number
+    chapter: number;
 }
 
 export interface VolumeInfo {
-    title: string;
     slug: string;
+    title?: string;
     chapters: ChapterInfo[];
-    volume?: number;         // Optional numeric volume value
-    volumeAlias?: string;    // Optional label like "Book"
-    chapterAlias?: string;   // Optional label like "Phase"
+    volume: number;
+    volumeAlias: string;
 }
 
 export interface NovelData {
-    updatedAt: string;
     slug: string;
     title: string;
     author: string;
     description: string;
     volumes: VolumeInfo[];
-    volumeAlias?: string;   // Optional default alias for all volumes
-    chapterAlias?: string;  // Optional default alias for all chapters
+    volumeAlias: string;
+    chapterAlias: string;
+    updatedAt: string;
 }
 
 export interface ChapterData {
@@ -35,10 +34,9 @@ export interface ChapterData {
     prevChapter?: string;
     nextChapter?: string;
     series: string;
+    volume: number;
+    chapter: number;
+    volumeAlias: string;
+    chapterAlias: string;
     publishedAt: string;
-
-    volume?: number;
-    chapter?: number;
-    volumeAlias?: string;
-    chapterAlias?: string;
 }
