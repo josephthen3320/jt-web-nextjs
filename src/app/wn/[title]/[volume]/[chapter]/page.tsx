@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import {getChapterData, getNovelData, getNovelList} from '@/lib/webnovel';
 import type { ChapterData } from '@/types/webnovel';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import {ArrowLeft, ArrowRight, Clock, Pencil, WholeWord, WrapText} from 'lucide-react';
 
 type Props = {
     params: Promise<{
@@ -24,10 +24,20 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function ChapterPage({ params }: Props) {
-    const { title, volume, chapter } = await params;
-    const chapterData = await getChapterData(title, volume, chapter);
+    const { title, volume, chapter } = await params;let chapterData: ChapterData;
 
-    if (!chapterData) notFound();
+    try {
+        chapterData = await getChapterData(title, volume, chapter);
+        if (!chapterData) throw new Error('Chapter not found');
+    } catch (err) {
+        return notFound(); // fallback to 404 page
+    }
+
+    const novel = await getNovelData(title);
+
+    // Calculate estimated reading time (assume 200 words per minutes.)
+    const wordCount = chapterData.contentHtml.split(/\s+/).length;       // Count words
+    const readingTime =  Math.ceil(wordCount / 120);            // Calculate reading time (rounded up)
 
     return (
         <div className="container mx-auto px-4 py-8 max-w-3xl">
@@ -42,15 +52,27 @@ export default async function ChapterPage({ params }: Props) {
             </nav>
 
             <div className="mb-8 space-y-2">
-                <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
-                    {chapterData.volumeAlias} {volume.split('-')[1]}
-                </p>
+                <div className="flex justify-between items-center text-gray-500 dark:text-gray-400 text-sm">
+                    <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                        {chapterData.volumeAlias} {volume.split('-')[1]} :: {chapterData.chapterAlias} {chapter.split('-')[1]}
+                    </p>
+                    <p className="font-thin">
+                        {chapterData.chapter} / {novel.volumes.reduce((acc, vol) => acc + vol.chapters.length, 0)}
+                    </p>
+                </div>
                 <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
                     {chapterData.title}
                 </h1>
-                <p className="text-gray-500 dark:text-gray-400">
-                    {chapterData.chapterAlias} {chapter.split('-')[1]}
-                </p>
+                <div className="flex justify-between items-center text-gray-500 dark:text-gray-400 text-sm">
+                    <span className="flex items-center gap-2">
+                        <Clock className="h-4 w-4" />
+                        {readingTime} mins
+                    </span>
+                    <span className="flex items-center gap-2">
+                        <WrapText className={"h-4 w-4"} />
+                        {wordCount} words
+                    </span>
+                </div>
             </div>
 
             <article
