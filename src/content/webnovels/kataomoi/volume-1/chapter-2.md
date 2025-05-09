@@ -116,7 +116,9 @@ She plumped into the nearest bench, hand still over her stomach like a tragic no
 
 "I'm going to die here," she mumbled. "In a tofu-stained coat, surrounded by strangers and soybeans."
 
-"At least you'll be remembered," I said. I'll write a eulogy. Something tasteful, perhaps even rhyme it with 'fermented bean curd.'"
+"At least you'll be remembered," I said. 
+
+"I'll write you a eulogy. Something tasteful, perhaps even rhyme it with 'fermented bean curd.'"
 
 "*Beautiful*," she groaned.
 
