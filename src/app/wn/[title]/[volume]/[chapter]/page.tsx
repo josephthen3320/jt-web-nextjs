@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import {getChapterData, getNovelData, getNovelList} from '@/lib/webnovel';
 import type { ChapterData } from '@/types/webnovel';
-import {ArrowLeft, ArrowRight, Clock, Pencil, WholeWord, WrapText} from 'lucide-react';
+import {ArrowLeft, ArrowRight, Clock, WrapText} from 'lucide-react';
 
 type Props = {
     params: Promise<{
