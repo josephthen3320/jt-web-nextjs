@@ -1,98 +1,157 @@
 ---
-title: "A Whisper of the Heart"
+title: "The Egg of Fate"
 slug: "chapter-1"
 volume: 1
 chapter: 1
 volumeAlias: "Arc"
 chapterAlias: "Chapter"
-prevChapter: ""
+prevChapter: "chapter-0"
 nextChapter: "chapter-2"
 series: "Kataomoi - Unrequited Love"
-publishedAt: "2025-05-07"
+publishedAt: "2025-05-09"
 ---
-“I just needed you to know,” 
+The wind hit like a slap as I stepped off the bus — cold, wet, and absolutely not winter nor springlike, no matter what the calendar insisted.
+My legs were half-asleep from the ride, and I was fumbling with the zipper of my coat when I heard it.
 
-I said, not looking up. 
+"Hey."
 
-Her silence didn’t fall like thunder—it fell like snow. 
+I turned.
 
-Quiet, cold, and slow to melt.
+There was a petite girl standing just behind me on the bus steps. 
+Her black hair spilling down to her chest, slightly flushed cheeks—not from embarrassment, as I'd later found out, but from a far more traumatic cause.
 
+She looked me dead in the eyes and said, completely matter-of-fact:
 
-She didn’t answer right away. 
-The silence stretched, thick and suffocating, like the pause before a storm. 
-My heart pounded in my ears, and I could almost hear the rhythm of my breath against the beating pulse of the world.
-
-
-I glanced up at her, but she wasn’t looking at me. 
-
-Her gaze was somewhere far off, distant like a horizon I could never reach. 
-I thought I saw a flicker in her eyes—a hesitation, maybe, but it disappeared before I could be sure.
-
-“I don’t expect anything from this,” 
-
-I added quickly, trying to swallow the lump that had formed in my throat. 
+"I just puked in the coach."
 
 
-"I just... had to say it. For me."
+I blinked.
 
-The words hung there, unanswered. 
+"...congratulations?"
 
-Her lips parted, but only a breath escaped, not a reply. 
-And in that moment, I knew. 
-The space between us had changed, but not in the way I’d hoped.
 
-I wanted to reach out, to pull the words back, but I couldn’t. 
+She stared at me for half a second, then bursts out laughing.
 
-— It was too late.
+"Thanks. I was going for a personal best."
 
-Her gaze finally met mine. 
-It wasn’t the look I wanted, but it wasn’t the rejection I’d feared either. 
 
-It was something softer. 
+There's something disarming about the way she said it—like she'd already processed the horror, filed it away, and decided to turn it into a personality trait.
+I had no idea what to say, so I just laughed along. 
 
-Something quieter.
+— What else could I do, really?
 
-— And it stung.
+She stepped off behind me, landing with a bit of a wobble.
+"Don't worry," she added casually, "I aimed for the floor, not the seats. You're safe."
 
-“I...” 
+— Comforting
 
-She didn’t finish, only looked away again, the words unspoken and hanging in the air, fragile like glass.
+"Really builds trusts between us, huh." I said.
 
-The silence returned—wiser now, heavier.
 
-I stood there, waiting for something—anything—that might mend the crack that had just split the moment in two. A smile. A word. A breath of hope. But nothing came.
+She glanced sideways, as if only now realising we hadn't formally met. 
 
-So I laughed.
+"Did you happen to be at the gym last night? You were with a friend using the mat area, right?"
 
-Not the kind that lifts rooms or lights hearts—just a quiet, broken sound, escaping like steam from a pot too long forgotten. My hand moved up to rub the back of my neck, a useless motion, like I was trying to erase the moment from the space around me.
+Taken by surprise, I nodded slowly and said, "Yeah, how'd you know?"
 
-"Yeah," I said, voice rough. "You don’t have to say anything."
+"I knew it, you look familiar!" She continued. 
 
-— Why did I lie?
+She pulled her hood up and shivered. "I'm cold. And mildly dying. Let's get going and find somewhere warm."
 
-I wanted her to say everything. I wanted her to crush me or save me—either would’ve been kinder than this slow dissolving.
+And that was it.
 
-Behind her, the late afternoon sun spilled through the window, painting the world gold, like a cruel joke. Everything looked too beautiful for what I was feeling.
+We didn't exchange names. We just started walking. 
 
-“I should go,” I mumbled, even though I didn’t move. My shoes felt nailed to the floor. She gave the smallest nod, and that, somehow, hurt more than any word she could have spoken.
+The rest of the trip participants were already gathering near the village gate, forming loose clumps of noise and energy.
+Somewhere, the trip organiser was yelling instructions and being universally ignored.
 
-As I turned to leave, something caught in my chest. A breath that wouldn’t come. A feeling I couldn’t name.
+The village we'd arrived at was tiny—like someone had plucked it out of a documentary and dropped it in the mountains.
+Old wooden houses, narrow dirt paths, and smoke curling from a chimney like something out of a folktale.
 
-The hallway outside felt longer than usual, like the building itself knew something had changed. I walked slowly, each step echoing back louder than it should, like I was being followed by the sound of my own heart breaking.
+Everything smelled faintly of earth, wood, and food I didn't recognise.
 
-When I reached the end of the corridor, I paused.
+"Smells like tofu," she said, sniffing the air. "Or feet."
 
-— Don't cry. Not yet.
+"Is there a difference?"
 
-But I knew the moment would come—later, maybe, when I was alone. When the adrenaline had drained, and the silence had followed me all the way home. When I’d start to wonder if maybe she had said something, in a language my heart wasn’t fluent in.
+"Depends on the feet."
 
-And I’d replay the moment, again and again, hoping to hear the words I wanted.
+We spent the morning rotating through the different cultural activities.
 
-They never came.
+First, the **popcorn cannon** — a rusted metal tube that looks more like a miniature medieval weapon than a snack-making device.
+An old man shouted warnings in the local dialect, yanked a steel bar, and the thing exploded with a *BANG* that nearly sent her stumbling into me.
 
-Not then.
+She jumped, smacked my arm, and muttered, "I knew I'm going to die on this trip."
 
-Not later.
+"Don't worry, If you puke again, I'll avenge you."
 
-Not ever.
+Next was **candy making** — we twisted sugar into shapes with trembling fingers, hers a lopsided rabbit, mind an accidental slime.
+She looked at mine and grinned.
+
+"It's like an exhausted rabbit."
+
+"Just like me," I said. 
+
+She laughed hard enough that her nausea came back and turned her fair complexion green.
+
+"Oh no," she clutched her stomach like it was plotting against her. 
+
+"I think the egg I had for breakfast finally declared a second war."
+
+I looked at her with what I hoped was concern, but probably came out closer to alarm.
+
+"Do you need to—"
+
+"Don't say the word," she cut me off, holding a finger with great dramatic weight.
+
+"If I hear the word, I *will* reenact it."
+
+— Duly noted.
+
+One of the trip captain noticed her wilting and guided her toward the 'dining room' 
+— a drafty wooden hall at the side of the village with a suspicious number of plastic chairs stacked in a corner.
+If we could call it a restaurant, it was out of sheer generosity and not because any signage confirmed it.
+
+She plumped into the nearest bench, hand still over her stomach like a tragic noblewoman struck down in her prime.
+
+"I'm going to die here," she mumbled. "In a tofu-stained coat, surrounded by strangers and soybeans."
+
+"At least you'll be remembered," I said. 
+
+"I'll write you a eulogy. Something tasteful, perhaps even rhyme it with 'fermented bean curd.'"
+
+"*Beautiful*," she groaned.
+
+"Just make sure to bury me next to the popcorn cannon. I want to go out with a *bang* for sure."
+
+I sat across from her, watching as she leaned against the wooden table and closed her eyes. For a moment, she looked peaceful—pale, yes, but peaceful.
+
+“Do you want water? Or warm soy milk, maybe?” I offered.
+
+“I want reincarnation,” she replied without opening her eyes.
+
+“Coming right up.”
+
+I returned with a paper cup of lukewarm water, which she accepted like a relic from a holy shrine. “You have my eternal gratitude,” she whispered, sipping with great ceremony.
+
+Outside the window, I could see the others trying calligraphy now, hunched over ink and paper like students in a scene from an old samurai film. 
+One of them had already splashed black ink all over his coat. 
+Another was apparently trying to draw a Pokémon instead of writing the Chinese characters.
+
+“I wanted to do the brush thing,” she said after a moment, eyes still half-shut. “But not if my stomach is going to perform interpretive dance in the middle of it.”
+
+“You can draw a spiral,” I said. “Symbolic. Like life.”
+
+“Like my digestion.”
+
+We both laughed—softer this time.
+
+The dining hall creaked as the wind pushed against it. 
+Somewhere, a kettle whistled faintly. 
+The air smelled of tofu, ink, and cold wood.
+
+And in that moment, despite the nausea, the bad eggs, and the sheer absurdity of the day, I realized I didn’t mind sitting here.
+
+Just like this.
+
+With her.
