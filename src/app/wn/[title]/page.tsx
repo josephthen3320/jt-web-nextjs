@@ -145,13 +145,13 @@ export default async function NovelPage({ params }: Props) {
                                     href={`/wn/${novel.slug}/${volume.slug}/${chapter.slug}`}
                                     className="group flex items-center justify-between p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
                                 >
-                  <span className="text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors">
-                    {novel.chapterAlias} {chapter.slug.replace('chapter-', '')}
-                  </span>
+                          <span className="text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors">
+                            {novel.chapterAlias} {chapter.chapter}
+                          </span>
                                     {chapter.title && (
                                         <span className="text-sm text-gray-500 dark:text-gray-400 ml-2 truncate">
-                      {chapter.title}
-                    </span>
+                                          {chapter.title}
+                                        </span>
                                     )}
                                 </Link>
                             ))}
