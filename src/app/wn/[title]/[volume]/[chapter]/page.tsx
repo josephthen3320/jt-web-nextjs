@@ -30,7 +30,7 @@ export default async function ChapterPage({ params }: Props) {
         chapterData = await getChapterData(title, volume, chapter);
         if (!chapterData) throw new Error('Chapter not found');
     } catch (err) {
-        return notFound(); // fallback to 404 page
+        notFound();
     }
 
     const novel = await getNovelData(title);
