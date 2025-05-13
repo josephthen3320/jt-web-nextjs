@@ -1,8 +1,9 @@
 ---
-title: "A Whisper of the Heart"
+title: "Prologue: A Whisper of the Heart"
 slug: "prologue"
 volume: 1
-chapter: 1
+chapter: 0
+overallChapterNo: 1
 volumeAlias: "Arc"
 chapterAlias: "Chapter"
 prevChapter: ""

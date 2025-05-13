@@ -1,4 +1,5 @@
 export interface ChapterInfo {
+    publishedAt?: string | null;
     slug: string;
     title?: string;
     volume: number; // Changed to number
@@ -25,6 +26,7 @@ export interface NovelData {
 }
 
 export interface ChapterData {
+    overallChapterNo: number;
     slug: string;
     novelSlug: string;
     volumeSlug: string;

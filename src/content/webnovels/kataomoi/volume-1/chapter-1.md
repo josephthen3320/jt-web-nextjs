@@ -3,6 +3,7 @@ title: "The Egg of Fate"
 slug: "chapter-1"
 volume: 1
 chapter: 1
+overallChapterNo: 2
 volumeAlias: "Arc"
 chapterAlias: "Chapter"
 prevChapter: "chapter-0"

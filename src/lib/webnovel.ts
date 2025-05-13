@@ -69,7 +69,8 @@ export async function getNovelData(slug: string): Promise<NovelData> {
                 slug: file.replace('.md', ''),
                 title: data.title,
                 volume: volumeNum, // number type
-                chapter: chapterNum
+                chapter: chapterNum,
+                publishedAt: data.publishedAt || null,
             } as ChapterInfo;
         }));
 
@@ -123,6 +124,7 @@ export async function getChapterData(title: string, volume: string, chapter: str
         contentHtml: processedContent.toString(),
         volume: volumeNum,
         chapter: chapterNum,
+        overallChapterNo: data.overallChapterNo,
         volumeAlias: data.volumeAlias || 'Volume',
         chapterAlias: data.chapterAlias || 'Chapter',
         series: data.series || title,

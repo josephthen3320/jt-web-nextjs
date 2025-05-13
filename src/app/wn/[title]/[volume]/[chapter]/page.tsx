@@ -41,7 +41,7 @@ export default async function ChapterPage({ params }: Props) {
     const { title, volume, chapter } = await params;
 
     let chapterData = await getChapterData(title, volume, chapter);
-    if (!chapterData) notFound(); // ❗ now this will work properly
+    if (!chapterData) notFound();
 
     try {
         chapterData = await getChapterData(title, volume, chapter);
@@ -73,8 +73,9 @@ export default async function ChapterPage({ params }: Props) {
                     <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
                         {chapterData.volumeAlias} {volume.split('-')[1]} :: {chapterData.chapterAlias} {chapter.split('-')[1]}
                     </p>
+                    {/* Todo: Figure out how to show the chapter index instead of the actual number. (Since we have prologue chapter) */}
                     <p className="font-thin">
-                        {chapterData.chapter} / {novel.volumes.reduce((acc, vol) => acc + vol.chapters.length, 0)}
+                        {chapterData.overallChapterNo} / {novel.volumes.reduce((acc, vol) => acc + vol.chapters.length, 0)}
                     </p>
                 </div>
                 <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
