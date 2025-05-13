@@ -24,22 +24,7 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function ChapterPage({ params }: Props) {
-    const { title, volume, chapter } = await params;let chapterData: {
-        novelSlug: string;
-        volumeSlug: string;
-        chapterSlug: any;
-        slug: any;
-        title: string;
-        contentHtml: any;
-        volume: number;
-        chapter: any;
-        volumeAlias: string;
-        chapterAlias: string;
-        series: string;
-        publishedAt: string;
-        prevChapter: string | null;
-        nextChapter: string | null
-    };
+    const { title, volume, chapter } = await params;let chapterData: ChapterData;
 
     try {
         chapterData = await getChapterData(title, volume, chapter);
