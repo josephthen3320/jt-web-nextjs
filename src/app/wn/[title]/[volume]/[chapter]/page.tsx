@@ -53,7 +53,7 @@ export default async function ChapterPage({ params }: Props) {
     const publishDate = new Date(chapterData.publishedAt);
     const isFuture = publishDate > now;
 
-    if (process.env.NODE_ENV === 'development' && isFuture) {
+    if (process.env.NODE_ENV === 'production' && isFuture) {
         return (
             <><nav
                 className="mb-6 sticky top-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-lg p-2 shadow-sm z-10">
