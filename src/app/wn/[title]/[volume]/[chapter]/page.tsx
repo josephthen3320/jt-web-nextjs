@@ -15,16 +15,33 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
     const { title, volume, chapter } = await params;
+
     const novel = await getNovelData(title);
-    const chapterData = await getChapterData(title, volume, chapter);
+    let chapterData = null;
+
+    try {
+        chapterData = await getChapterData(title, volume, chapter);
+    } catch (err) {
+        if (process.env.NODE_ENV === 'development') {
+            console.warn(`generateMetadata: chapter not found for ${title}/${volume}/${chapter}`, err);
+        }
+    }
+
     return {
-        title: `${novel.title} - ${chapterData.chapterAlias} ${chapter.split('-')[1]} | Joseph Thenara`,
-        description: `Read ${novel.title} chapter on our platform`,
+        title: chapterData
+            ? `${novel.title} - ${chapterData.chapterAlias} ${chapterData.chapter} | Joseph Thenara`
+            : `${novel.title} - Chapter not found | Joseph Thenara`,
+        description: chapterData
+            ? `Read ${novel.title} ${chapterData.chapterAlias} ${chapterData.chapter} on our platform.`
+            : `Chapter not found for ${novel.title}.`,
     };
 }
 
 export default async function ChapterPage({ params }: Props) {
-    const { title, volume, chapter } = await params;let chapterData: ChapterData;
+    const { title, volume, chapter } = await params;
+
+    let chapterData = await getChapterData(title, volume, chapter);
+    if (!chapterData) notFound(); // ❗ now this will work properly
 
     try {
         chapterData = await getChapterData(title, volume, chapter);

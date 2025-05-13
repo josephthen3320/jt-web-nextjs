@@ -94,14 +94,23 @@ export async function getNovelData(slug: string): Promise<NovelData> {
     };
 }
 
-export async function getChapterData(title: string, volume: string, chapter: string): Promise<ChapterData> {
+export async function getChapterData(title: string, volume: string, chapter: string): Promise<ChapterData | null> {
     const filePath = path.join(contentDirectory, title, volume, `${chapter}.md`);
-    const fileContent = await fs.readFile(filePath, 'utf8');
-    const { data, content } = matter(fileContent);
 
+    let fileContent: string;
+    try {
+        fileContent = await fs.readFile(filePath, 'utf8');
+    } catch (err: any) {
+        if (err.code === 'ENOENT') {
+            console.warn(`File not found: ${filePath}`);
+            return null; // ✅ gracefully return null instead of throwing
+        }
+        throw err; // 🔥 still re-throw unknown errors
+    }
+
+    const { data, content } = matter(fileContent);
     const processedContent = await remark().use(html).process(content);
 
-    // Parse volume/chapter numbers from slugs
     const volumeNum = parseInt(volume.split('-')[1]);
     const chapterNum = parseInt(chapter.split('-')[1]);
 
