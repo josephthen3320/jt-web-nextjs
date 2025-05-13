@@ -150,11 +150,38 @@ export default async function NovelPage({ params }: Props) {
 
                                 // Skip if it's in the past AND we are in production
                                 if (
-                                    process.env.NODE_ENV === 'production' &&
+                                    // process.env.NODE_ENV === 'production' &&
                                     publishedDate &&
                                     publishedDate >= today
                                 ) {
-                                    return null;
+                                    return (
+                                        <Link
+                                            key={chapter.slug}
+                                            href={`#`}
+                                            className="group flex items-center justify-between p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                                        >
+                                            <div className="flex gap-3 items-center w-full">
+                                                {/* Chapter Number */}
+                                                <span className="text-gray-700 dark:text-gray-700 group-hover:text-gray-500 dark:group-hover:text-gray-500 transition-colors shrink-0">
+                                                    {novel.chapterAlias} {chapter.chapter}
+                                                </span>
+
+                                                {/* Chapter Title */}
+                                                {chapter.title && (
+                                                    <span className="text-sm text-gray-700 dark:text-gray-600 truncate min-w-0 flex-1">
+                                                      {chapter.title}
+                                                    </span>
+                                                )}
+
+                                                {/* Publish Date */}
+                                                {chapter.publishedAt && (
+                                                    <span className="text-sm text-gray-500 dark:text-gray-400 font-mono text-right shrink-0 ml-auto">
+                                                      {formatPublishedDate(chapter.publishedAt)}
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </Link>
+                                    );
                                 }
 
                                 return (

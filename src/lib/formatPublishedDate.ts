@@ -7,7 +7,7 @@ export function formatPublishedDate(publishedAt: string): string {
 
     if (isNaN(publishedDate.getTime())) return ''; // invalid date
 
-    if (daysAgo < 0) return 'In the future: ' + publishedDate.toLocaleDateString(undefined); // future date edge case
+    if (daysAgo < 0) return 'Scheduled: ' + publishedDate.toLocaleDateString(undefined); // future date edge case
 
     if (daysAgo === 0) return 'Today';
     if (daysAgo === 1) return 'Yesterday';

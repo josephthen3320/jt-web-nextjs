@@ -41,13 +41,48 @@ export default async function ChapterPage({ params }: Props) {
     const { title, volume, chapter } = await params;
 
     let chapterData = await getChapterData(title, volume, chapter);
-    if (!chapterData) notFound();
-
     try {
         chapterData = await getChapterData(title, volume, chapter);
         if (!chapterData) throw new Error('Chapter not found');
     } catch (err) {
         notFound();
+    }
+
+    // Check if the chapter is not yet published AND we’re in production
+    const now = new Date();
+    const publishDate = new Date(chapterData.publishedAt);
+    const isFuture = publishDate > now;
+
+    if (process.env.NODE_ENV === 'development' && isFuture) {
+        return (
+            <><nav
+                className="mb-6 sticky top-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-lg p-2 shadow-sm z-10">
+                <a
+                    href={`/wn/${title}`}
+                    className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
+                >
+                    <ArrowLeft className="mr-2 h-4 w-4"/>
+                    Back to {chapterData.series}
+                </a>
+            </nav>
+                <div className="container mx-auto px-4 py-20 max-w-xl text-center">
+                    <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
+                        Chapter Not Yet Available
+                    </h1>
+                    <p className="text-gray-600 dark:text-gray-400">
+                        This chapter is scheduled to release on:{' '}
+                        <span className="font-mono">
+                            {publishDate.toLocaleString(undefined, {
+                                weekday: 'short',
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric'
+                            })}
+                        </span>
+                    </p>
+                </div>
+            </>
+        );
     }
 
     const novel = await getNovelData(title);
