@@ -170,13 +170,13 @@ Alfonse finally sat up. "So. Anybody got plans for tomorrow?"
 
 "COVID test," I said.
 
-"Then breakfast?"
+"Then breakfast?" he tried again.
 
 "We d-"
 
-"Don't do breakfast, yeah yeah I know," Alfonse smirked after teasing us two. "And then?"
+“—don’t do breakfast, yeah, yeah,” he smirked. “Then what?”
 
-"Nothing." Edu added, while sighing because he still hasn't gotten the exclusive featured five-stars character yet. "Just like today. Maybe continuing on that inventory system before the break ends."
+“Nothing,” Edu sighed. He tapped his screen. Still no 5-star pull. “Maybe I’ll finish that inventory system before break ends.”
 
 "Perfect."
 
@@ -186,23 +186,25 @@ Alfonse finally sat up. "So. Anybody got plans for tomorrow?"
 
 "To surviving tomorrow's stabbing," Alfonse finished.
 
-We toasted our coffee, tea, and soda.
+We toasted. Coffee. Soda. Mysterious tea blend.
 
-Just as I started drifting into my post-rice coma, my phone buzzed again. 
-This time a different, but familiar vibration pattern.
+Just as I started melting into my post-rice coma, my phone buzzed again.
+Different tone. Familiar vibration.
 
-> [Lloyd] Game night. Friday.
+> [Lloyd]: Game night. Friday.
 
-> [Lloyd] Don't you dare ghost.
+> [Lloyd]: Don't you dare ghost.
 
-> [Lloyd] You're coming.
+> [Lloyd]: You're coming.
  
-I stared at the message.
+I stared at the screen.
 
-"Did you also get sentenced?" Edu and Alfonse looked up in unison.
+"Did you also get sentenced?" I asked aloud.
+
+Edu and Alfonse looked up in unison.
 
 I nodded.
 
-Edu grinned, "Time to clear Friday night, and don't forget to bring our moral ambiguity."
+Edu grinned. "Time to clear Friday night, and don't forget to bring your moral ambiguity."
 
 "..That sounds _safe_."
