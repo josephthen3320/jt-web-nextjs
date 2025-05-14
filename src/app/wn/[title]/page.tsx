@@ -150,7 +150,7 @@ export default async function NovelPage({ params }: Props) {
 
                                 // Skip if it's in the past AND we are in production
                                 if (
-                                    // process.env.NODE_ENV === 'production' &&
+                                    process.env.NODE_ENV === 'production' &&
                                     publishedDate &&
                                     publishedDate >= today
                                 ) {
