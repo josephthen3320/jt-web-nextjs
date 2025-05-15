@@ -145,8 +145,7 @@ export default async function NovelPage({ params }: Props) {
                                 const publishedDate = chapter.publishedAt ? new Date(chapter.publishedAt) : null;
 
                                 // Get today with time zeroed out
-                                const today = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Shanghai" }));
-                                today.setHours(0, 0, 0, 0);
+                                const today = new Date();
 
                                 // Skip if it's in the past AND we are in production
                                 if (
