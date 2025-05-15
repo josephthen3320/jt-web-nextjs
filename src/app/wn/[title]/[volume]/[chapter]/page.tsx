@@ -91,6 +91,13 @@ export default async function ChapterPage({ params }: Props) {
     const wordCount = chapterData.contentHtml.split(/\s+/).length;       // Count words
     const readingTime =  Math.ceil(wordCount / 120);            // Calculate reading time (rounded up)
 
+    // Next Previous Chapters Data
+    const nextChapterNum = chapterData.chapter + 1;
+    const prevChapterNum = chapterData.chapter - 1;
+
+    const finalChapter = chapterData.isFinalChapter;
+    const firstChapter = chapterData.isFirstChapter;
+
     return (
         <div className="container mx-auto px-4 py-8 max-w-3xl">
             <nav className="mb-6 sticky top-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-lg p-2 shadow-sm z-10">
@@ -144,27 +151,27 @@ export default async function ChapterPage({ params }: Props) {
 
             <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
                 <div className="flex justify-between gap-4">
-                    {chapterData.prevChapter && (
+                    {!firstChapter && (
                         <a
-                            href={`/wn/${title}/${volume}/${chapterData.prevChapter}`}
+                            href={`/wn/${title}/${volume}/chapter-${prevChapterNum}`}
                             className="flex items-center px-4 py-2 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-blue-600 dark:text-blue-300 rounded-lg transition-colors"
                         >
                             <ArrowLeft className="mr-2 h-5 w-5" />
                             <div className="text-left">
                                 <span className="text-xs text-gray-500 dark:text-gray-400">Previous</span>
-                                <p className="font-medium">Chapter {chapterData.prevChapter.split('-')[1]}</p>
+                                <p className="font-medium">{chapterData.chapterAlias} {prevChapterNum}</p>
                             </div>
                         </a>
                     )}
 
-                    {chapterData.nextChapter && (
+                    {!finalChapter && (
                         <a
-                            href={`/wn/${title}/${volume}/${chapterData.nextChapter}`}
+                            href={`/wn/${title}/${volume}/chapter-${nextChapterNum}`}
                             className="flex items-center px-4 py-2 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-blue-600 dark:text-blue-300 rounded-lg transition-colors ml-auto"
                         >
                             <div className="text-right">
                                 <span className="text-xs text-gray-500 dark:text-gray-400">Next</span>
-                                <p className="font-medium">Chapter {chapterData.nextChapter.split('-')[1]}</p>
+                                <p className="font-medium">{chapterData.chapterAlias} {nextChapterNum}</p>
                             </div>
                             <ArrowRight className="ml-2 h-5 w-5" />
                         </a>

@@ -6,10 +6,9 @@ chapter: 0
 overallChapterNo: 1
 volumeAlias: "Arc"
 chapterAlias: "Chapter"
-prevChapter: ""
-nextChapter: "chapter-1"
 series: "Kataomoi - Unrequited Love"
 publishedAt: "2025-05-07"
+isFirstChapter: "true"
 ---
 “I just needed you to know,” 
 

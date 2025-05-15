@@ -33,12 +33,14 @@ export interface ChapterData {
     chapterSlug: string;
     title: string;
     contentHtml: string;
-    prevChapter?: string;
-    nextChapter?: string;
+    //prevChapter?: string;
+    //nextChapter?: string;
     series: string;
     volume: number;
     chapter: number;
     volumeAlias: string;
     chapterAlias: string;
     publishedAt: string;
+    isFinalChapter: boolean;
+    isFirstChapter: boolean;
 }

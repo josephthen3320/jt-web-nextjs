@@ -122,14 +122,16 @@ export async function getChapterData(title: string, volume: string, chapter: str
         slug: chapter,
         title: data.title || `${data.chapterAlias || 'Chapter'} ${chapterNum}`,
         contentHtml: processedContent.toString(),
-        volume: volumeNum,
-        chapter: chapterNum,
+        volume: data.volume || volumeNum,
+        chapter: data.chapter || chapterNum,
         overallChapterNo: data.overallChapterNo,
         volumeAlias: data.volumeAlias || 'Volume',
         chapterAlias: data.chapterAlias || 'Chapter',
         series: data.series || title,
         publishedAt: data.publishedAt || new Date().toISOString(),
-        prevChapter: data.prevChapter || null,
-        nextChapter: data.nextChapter || null
+        //prevChapter: data.prevChapter || null,
+        //nextChapter: data.nextChapter || null,
+        isFinalChapter: data.isFinalChapter ? data.isFinalChapter === 'true' : false,
+        isFirstChapter: data.isFirstChapter ? data.isFirstChapter === 'true' : false
     };
 }

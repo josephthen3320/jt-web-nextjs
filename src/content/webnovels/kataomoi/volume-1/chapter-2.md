@@ -6,8 +6,6 @@ chapter: 2
 overallChapterNo: 3
 volumeAlias: "Arc"
 chapterAlias: "Chapter"
-prevChapter: "chapter-1"
-nextChapter: "chapter-3"
 series: "Kataomoi - Unrequited Love"
 publishedAt: "2025-05-15"
 ---
