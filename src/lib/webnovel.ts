@@ -32,6 +32,7 @@ export async function getNovelList() {
                 // replace metaData.volumes?.length with actual folder count
                 volumes: volumeCount,
                 lastUpdated: metaData.updatedAt || null,
+                visibility: metaData.visibility || 'visible'
             };
         })
     );
