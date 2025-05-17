@@ -51,6 +51,9 @@ export default async function NovelPage({ params }: Props) {
 
     const totalChapters = novel.volumes.reduce((acc, vol) => acc + vol.chapters.length, 0);
 
+    // Get today with time zeroed out
+    const today = new Date();
+
     return (
         <div className="container mx-auto px-4 py-8 max-w-4xl">
             {/* Back Navigation */}
@@ -60,7 +63,7 @@ export default async function NovelPage({ params }: Props) {
                     className="inline-flex items-center text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 transition-colors"
                 >
                     <ArrowLeft className="mr-2 h-4 w-4" />
-                    All Novels / {new Date(latestChapterData.publishedAt).toLocaleDateString()}
+                    All Novels / {today.toLocaleString()}
                 </Link>
             </nav>
 
@@ -143,9 +146,6 @@ export default async function NovelPage({ params }: Props) {
                             {volume.chapters.map((chapter) => {
                                 // Convert publishedAt string to date
                                 const publishedDate = chapter.publishedAt ? new Date(chapter.publishedAt) : null;
-
-                                // Get today with time zeroed out
-                                const today = new Date();
 
                                 // Skip if it's in the past AND we are in production
                                 if (
