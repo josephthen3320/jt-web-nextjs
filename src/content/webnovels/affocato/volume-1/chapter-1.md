@@ -129,7 +129,7 @@ He glanced toward his parents, who were already starting to collect their things
 His mother said something to him in Portuguese, her tone soft but a little firm - motherly concern compressed into syllables I didn't quite catch.
 He answered in the same language, briefly, gently.
 
-They moved with a kind of wordless choreography, packing without hurry but without wasste.
+They moved with a kind of wordless choreography, packing without hurry but without waste.
 
 Edu turned back to me. "Give me a second. I'll come with you."
 
