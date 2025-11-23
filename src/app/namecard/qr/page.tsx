@@ -1,6 +1,7 @@
 'use client';
 
 import { QRCodeSVG } from 'qrcode.react';
+import Image from "next/image";
 
 export default function NameCard() {
     const qrValue = "https://josephthen.vercel.app/namecard"; // change to your real contact page URL
@@ -15,13 +16,7 @@ export default function NameCard() {
 
                 <div className="flex justify-center mb-4">
                     <div className="p-3 bg-white inline-block rounded-md shadow">
-                        <QRCodeSVG
-                            value={qrValue}
-                            size={200}
-                            bgColor="#ffffff"
-                            fgColor="#000000"
-                            className="rounded-sm"
-                        />
+                        <Image src="/namecard/jt-namecard-qr.png" alt='namecard qr code' width={256} height={256} />
                     </div>
                 </div>
 
