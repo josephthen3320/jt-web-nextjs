@@ -34,7 +34,7 @@ const contacts = [
     },
     {
         label: "WhatsApp",
-        href: "https://wa.me/6282127285755",
+        href: "https://wa.me/6285179867756",
         icon: <FaWhatsapp />,
     },
 ];
