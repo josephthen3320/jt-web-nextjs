@@ -1,4 +1,4 @@
-import {getNovelData, getNovelList} from '@/lib/webnovel';
+import {getNovelList} from '@/lib/webnovel';
 import {ArrowRight, Bookmark, BookOpen, Calendar, Library, NotebookText, User} from 'lucide-react';
 
 export async function generateMetadata() {
@@ -31,9 +31,7 @@ export default async function WebnovelHome() {
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                        {novels
-                            .filter(novel => novel.visibility === 'visible')
-                            .map((novel) => (
+                        {novels.map((novel) => (
                             <a
                                 key={novel.slug}
                                 href={`/wn/${novel.slug}`}

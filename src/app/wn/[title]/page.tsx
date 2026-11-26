@@ -1,36 +1,22 @@
-import { getChapterData, getNovelData } from '@/lib/webnovel';
-import type { NovelData, ChapterData } from '@/types/webnovel';
+import { getNovelData, getNovelList } from '@/lib/webnovel';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, User, BookOpen, BarChart, Clock } from 'lucide-react';
 import Link from 'next/link';
-import fs from 'fs/promises';
-import path from 'path';
 import {formatPublishedDate} from "@/lib/formatPublishedDate";
+import {isChapterAvailable} from "@/lib/chapterRelease";
 
 type Props = {
     params: Promise<{ title: string }>;
 };
 
-async function getLatestValidChapterData(
-    title: string,
-    volumeSlug: string,
-    chapters: { slug: string; title?: string }[]
-): Promise<ChapterData | null> {
-    for (let i = chapters.length - 1; i >= 0; i--) {
-        const chapterSlug = chapters[i].slug;
-        try {
-            const data = await getChapterData(title, volumeSlug, chapterSlug);
-            return data;
-        } catch (err) {
-            console.warn(`Skipping missing chapter: ${chapterSlug}`, err);
-        }
-    }
-    return null;
-}
-
 export async function generateMetadata({ params }: Props) {
     const { title } = await params;
     const novel = await getNovelData(title);
+    if (!novel) {
+        return {
+            title: "Novel not found | Joseph Thenara",
+        };
+    }
     return {
         title: `${novel.title} | Joseph Thenara`,
         description: `View details and chapters for ${title}`,
@@ -43,16 +29,8 @@ export default async function NovelPage({ params }: Props) {
 
     if (!novel) notFound();
 
-    const totalVolume = novel.volumes.length;
-    const currentVolume = novel.volumes[totalVolume - 1];
-    const latestChapterData = await getLatestValidChapterData(title, currentVolume.slug, currentVolume.chapters);
-
-    if (!latestChapterData) notFound();
-
     const totalChapters = novel.volumes.reduce((acc, vol) => acc + vol.chapters.length, 0);
-
-    // Get today with time zeroed out
-    const today = new Date();
+    if (totalChapters === 0) notFound();
 
     return (
         <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -63,7 +41,7 @@ export default async function NovelPage({ params }: Props) {
                     className="inline-flex items-center text-gray-600 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-100 transition-colors"
                 >
                     <ArrowLeft className="mr-2 h-4 w-4" />
-                    All Novels / {today.toLocaleString()}
+                    All Novels
                 </Link>
             </nav>
 
@@ -144,30 +122,23 @@ export default async function NovelPage({ params }: Props) {
 
                         <div className="grid grid-cols-1 md:grid-cols-1">
                             {volume.chapters.map((chapter) => {
-                                // Convert publishedAt string to date
-                                const publishedDate = chapter.publishedAt ? new Date(chapter.publishedAt) : null;
-
-                                // Skip if it's in the past AND we are in production
-                                if (
-                                    process.env.NODE_ENV === 'production' &&
-                                    publishedDate &&
-                                    publishedDate >= today
-                                ) {
+                                // Scheduled chapters are not linked until their release day.
+                                if (!isChapterAvailable(chapter.publishedAt)) {
                                     return (
-                                        <Link
+                                        <div
                                             key={chapter.slug}
-                                            href={`#`}
-                                            className="group flex items-center justify-between p-3 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
+                                            aria-disabled="true"
+                                            className="flex items-center justify-between p-3 rounded-lg opacity-60"
                                         >
                                             <div className="flex gap-3 items-center w-full">
                                                 {/* Chapter Number */}
-                                                <span className="text-gray-700 dark:text-gray-700 group-hover:text-gray-500 dark:group-hover:text-gray-500 transition-colors shrink-0">
+                                                <span className="text-gray-500 dark:text-gray-500 shrink-0">
                                                     {novel.chapterAlias} {chapter.chapter}
                                                 </span>
 
                                                 {/* Chapter Title */}
                                                 {chapter.title && (
-                                                    <span className="text-sm text-gray-700 dark:text-gray-600 truncate min-w-0 flex-1">
+                                                    <span className="text-sm text-gray-500 dark:text-gray-500 truncate min-w-0 flex-1">
                                                       {chapter.title}
                                                     </span>
                                                 )}
@@ -179,7 +150,7 @@ export default async function NovelPage({ params }: Props) {
                                                     </span>
                                                 )}
                                             </div>
-                                        </Link>
+                                        </div>
                                     );
                                 }
 
@@ -221,7 +192,6 @@ export default async function NovelPage({ params }: Props) {
 }
 
 export async function generateStaticParams() {
-    const { getNovelList } = await import('@/lib/webnovel');
     const novels = await getNovelList();
     const params: Array<{ title: string }> = novels.map((novel) => ({ title: novel.slug }));
     return params;

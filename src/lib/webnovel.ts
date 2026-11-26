@@ -1,47 +1,89 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { cache } from 'react';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
 import type { ChapterInfo, VolumeInfo, NovelData, ChapterData } from '@/types/webnovel';
-import {slug} from "github-slugger";
 
 const contentDirectory = path.join(process.cwd(), 'src/content/webnovels');
 
-export async function getNovelList() {
-    const novelDirs = await fs.readdir(contentDirectory);
-    const novels = await Promise.all(
-        novelDirs.map(async (dir) => {
-            const novelPath = path.join(contentDirectory, dir);
+type NovelVisibility = 'visible' | 'hidden';
 
-            // 👉 Count only subdirectories named "volume-*"
-            const entries = await fs.readdir(novelPath, { withFileTypes: true });
-            const volumeCount = entries.filter(
-                (e) => e.isDirectory() && e.name.startsWith('volume-')
-            ).length;
-
-            // 👉 Read your existing meta.json
-            const metaPath = path.join(novelPath, 'meta.json');
-            const metaData = JSON.parse(await fs.readFile(metaPath, 'utf8'));
-
-            return {
-                slug: dir,
-                title: metaData.title,
-                author: metaData.author,
-                description: metaData.description,
-                // replace metaData.volumes?.length with actual folder count
-                volumes: volumeCount,
-                lastUpdated: metaData.updatedAt || null,
-                visibility: metaData.visibility || 'visible'
-            };
-        })
-    );
-    return novels;
+interface NovelMeta {
+    title: string;
+    author: string;
+    description: string;
+    volumeAlias?: string;
+    chapterAlias?: string;
+    updatedAt?: string;
+    visibility?: NovelVisibility;
+    volumes?: { title?: string }[];
 }
 
-export async function getNovelData(slug: string): Promise<NovelData> {
+// Hidden novels stay reachable in development so drafts can be previewed.
+function isAccessible(metaData: NovelMeta) {
+    return metaData.visibility !== 'hidden' || process.env.NODE_ENV !== 'production';
+}
+
+// Cached so generateMetadata and the page component share one read per render.
+const readNovelMeta = cache(async (slug: string): Promise<NovelMeta | null> => {
     const metaPath = path.join(contentDirectory, slug, 'meta.json');
-    const metaData = JSON.parse(await fs.readFile(metaPath, 'utf8'));
+
+    try {
+        return JSON.parse(await fs.readFile(metaPath, 'utf8')) as NovelMeta;
+    } catch (err: any) {
+        if (err.code === 'ENOENT') {
+            console.warn(`Novel metadata not found: ${metaPath}`);
+            return null;
+        }
+        throw err;
+    }
+});
+
+// Arguments stay primitive: cache() keys on argument identity, so an options
+// object would miss on every call.
+export const getNovelList = cache(async (includeHidden = false) => {
+    const dirEntries = await fs.readdir(contentDirectory, { withFileTypes: true });
+
+    const novels = await Promise.all(
+        dirEntries
+            .filter((entry) => entry.isDirectory())
+            .map(async (entry) => {
+                const metaData = await readNovelMeta(entry.name);
+                if (!metaData) return null;
+                if (!includeHidden && !isAccessible(metaData)) return null;
+
+                // 👉 Count only subdirectories named "volume-*"
+                const novelPath = path.join(contentDirectory, entry.name);
+                const volumeEntries = await fs.readdir(novelPath, { withFileTypes: true });
+                const volumeCount = volumeEntries.filter(
+                    (e) => e.isDirectory() && e.name.startsWith('volume-')
+                ).length;
+
+                return {
+                    slug: entry.name,
+                    title: metaData.title,
+                    author: metaData.author,
+                    description: metaData.description,
+                    // replace metaData.volumes?.length with actual folder count
+                    volumes: volumeCount,
+                    lastUpdated: metaData.updatedAt || null,
+                    visibility: metaData.visibility || 'visible'
+                };
+            })
+    );
+
+    return novels.filter((novel): novel is NonNullable<typeof novel> => novel !== null);
+});
+
+export const getNovelData = cache(async (
+    slug: string,
+    includeHidden = false
+): Promise<NovelData | null> => {
+    const metaData = await readNovelMeta(slug);
+    if (!metaData) return null;
+    if (!includeHidden && !isAccessible(metaData)) return null;
 
     const volumeDirs = (await fs.readdir(path.join(contentDirectory, slug)))
         .filter(item => item.startsWith('volume-'))
@@ -94,9 +136,9 @@ export async function getNovelData(slug: string): Promise<NovelData> {
         volumes,
         updatedAt: metaData.updatedAt || new Date().toISOString()
     };
-}
+});
 
-export async function getChapterData(title: string, volume: string, chapter: string): Promise<ChapterData | null> {
+export const getChapterData = cache(async (title: string, volume: string, chapter: string): Promise<ChapterData | null> => {
     const filePath = path.join(contentDirectory, title, volume, `${chapter}.md`);
 
     let fileContent: string;
@@ -135,4 +177,4 @@ export async function getChapterData(title: string, volume: string, chapter: str
         isFinalChapter: data.isFinalChapter ? data.isFinalChapter === 'true' : false,
         isFirstChapter: data.isFirstChapter ? data.isFirstChapter === 'true' : false
     };
-}
+});

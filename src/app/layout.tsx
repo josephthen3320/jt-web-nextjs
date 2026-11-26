@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 import { Header } from './components/header';
@@ -8,6 +8,7 @@ import { headerNavLinks } from '@/configs/header-nav-links';
 
 const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -22,10 +23,7 @@ export default function RootLayout({
 }>) {
   return (
       <html lang="en" className='dark scroll-smooth'>
-      <head>
-        <link rel="icon" type="image/x-icon" href="/favicon.png" />
-      </head>
-      <body className={`${inter.className} bg-white text-black antialiased dark:bg-background-color dark:text-white`}>
+      <body className={`${inter.className} ${inter.variable} antialiased`}>
           <div className='mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0'>
               <div className="flex h-screen flex-col justify-between">
                   <Header navLinks={headerNavLinks} />

@@ -1,27 +1,65 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* "dark" is hard-coded on <html>, so the dark: utilities must key off that
+   class. Without this variant Tailwind v4 compiles them into
+   @media (prefers-color-scheme: dark) and the class on <html> does nothing. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* The site is dark-only ("dark" is hard-coded on <html>), so the surface
+     colors must not follow the OS preference or text and background drift
+     apart on light-mode machines. */
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  color-scheme: dark;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* Accent palette used by the site title, card icons and link underlines */
+  --color-primary-color: #14b8a6;
+  --color-primary-color-500: #14b8a6;
+  --color-primary-color-dark: #2dd4bf;
+  --color-primary-color-dark-500: #2dd4bf;
+
+  --font-sans: var(--font-inter);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  --animate-tilt: tilt 10s infinite linear;
+
+  @keyframes tilt {
+    0%,
+    50% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(0.5deg);
+    }
+    75% {
+      transform: rotate(-0.5deg);
+    }
+  }
+}
+
+@utility link-underline {
+  background-image: linear-gradient(transparent, transparent),
+    linear-gradient(var(--color-primary-color), var(--color-primary-color));
+  background-size: 0 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s ease-in-out;
+
+  &:hover {
+    background-size: 100% 2px;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import {getChapterData, getNovelData, getNovelList} from '@/lib/webnovel';
-import type { ChapterData } from '@/types/webnovel';
+import {chapterHref, resolveChapterNavigation} from '@/lib/chapterNavigation';
+import {isChapterAvailable, parsePublishedDate} from '@/lib/chapterRelease';
 import {ArrowLeft, ArrowRight, Clock, WrapText} from 'lucide-react';
 
 type Props = {
@@ -17,15 +19,13 @@ export async function generateMetadata({ params }: Props) {
     const { title, volume, chapter } = await params;
 
     const novel = await getNovelData(title);
-    let chapterData = null;
-
-    try {
-        chapterData = await getChapterData(title, volume, chapter);
-    } catch (err) {
-        if (process.env.NODE_ENV === 'development') {
-            console.warn(`generateMetadata: chapter not found for ${title}/${volume}/${chapter}`, err);
-        }
+    if (!novel) {
+        return {
+            title: 'Chapter not found | Joseph Thenara',
+        };
     }
+
+    const chapterData = await getChapterData(title, volume, chapter);
 
     return {
         title: chapterData
@@ -40,30 +40,28 @@ export async function generateMetadata({ params }: Props) {
 export default async function ChapterPage({ params }: Props) {
     const { title, volume, chapter } = await params;
 
-    let chapterData = await getChapterData(title, volume, chapter);
-    try {
-        chapterData = await getChapterData(title, volume, chapter);
-        if (!chapterData) throw new Error('Chapter not found');
-    } catch (err) {
-        notFound();
-    }
+    // Resolve the novel first so hidden novels 404 even when a chapter file exists.
+    const novel = await getNovelData(title);
+    if (!novel) notFound();
 
-    // Check if the chapter is not yet published AND we’re in production
-    const now = new Date();
-    const publishDate = new Date(chapterData.publishedAt);
-    const isFuture = publishDate > now;
+    const chapterData = await getChapterData(title, volume, chapter);
+    if (!chapterData) notFound();
 
-    if (process.env.NODE_ENV === 'production' && isFuture) {
+    const publishedDate = parsePublishedDate(chapterData.publishedAt);
+    const navigation = resolveChapterNavigation(novel, volume, chapter);
+
+    // Scheduled chapters are readable in development but gated once deployed.
+    if (!isChapterAvailable(chapterData.publishedAt)) {
         return (
             <><nav
                 className="mb-6 sticky top-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-lg p-2 shadow-sm z-10">
-                <a
+                <Link
                     href={`/wn/${title}`}
                     className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
                 >
                     <ArrowLeft className="mr-2 h-4 w-4"/>
                     Back to {chapterData.series}
-                </a>
+                </Link>
             </nav>
                 <div className="container mx-auto px-4 py-20 max-w-xl text-center">
                     <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">
@@ -72,12 +70,14 @@ export default async function ChapterPage({ params }: Props) {
                     <p className="text-gray-600 dark:text-gray-400">
                         This chapter is scheduled to release on:{' '}
                         <span className="font-mono">
-                            {publishDate.toLocaleString(undefined, {
-                                weekday: 'short',
-                                year: 'numeric',
-                                month: 'short',
-                                day: 'numeric'
-                            })}
+                            {publishedDate
+                                ? publishedDate.toLocaleDateString(undefined, {
+                                    weekday: 'short',
+                                    year: 'numeric',
+                                    month: 'short',
+                                    day: 'numeric'
+                                })
+                                : chapterData.publishedAt}
                         </span>
                     </p>
                 </div>
@@ -85,29 +85,20 @@ export default async function ChapterPage({ params }: Props) {
         );
     }
 
-    const novel = await getNovelData(title);
-
     // Calculate estimated reading time (assume 200 words per minutes.)
     const wordCount = chapterData.contentHtml.split(/\s+/).length;       // Count words
     const readingTime =  Math.ceil(wordCount / 120);            // Calculate reading time (rounded up)
 
-    // Next Previous Chapters Data
-    const nextChapterNum = chapterData.chapter + 1;
-    const prevChapterNum = chapterData.chapter - 1;
-
-    const finalChapter = chapterData.isFinalChapter;
-    const firstChapter = chapterData.isFirstChapter;
-
     return (
         <div className="container mx-auto px-4 py-8 max-w-3xl">
             <nav className="mb-6 sticky top-4 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-lg p-2 shadow-sm z-10">
-                <a
+                <Link
                     href={`/wn/${title}`}
                     className="inline-flex items-center text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors"
                 >
                     <ArrowLeft className="mr-2 h-4 w-4" />
                     Back to {chapterData.series}
-                </a>
+                </Link>
             </nav>
 
             <div className="mb-8 space-y-2">
@@ -115,9 +106,8 @@ export default async function ChapterPage({ params }: Props) {
                     <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
                         {chapterData.volumeAlias} {volume.split('-')[1]} :: {chapterData.chapterAlias} {chapter.split('-')[1]}
                     </p>
-                    {/* Todo: Figure out how to show the chapter index instead of the actual number. (Since we have prologue chapter) */}
                     <p className="font-thin">
-                        {chapterData.overallChapterNo} / {novel.volumes.reduce((acc, vol) => acc + vol.chapters.length, 0)}
+                        {navigation.index + 1} / {navigation.total}
                     </p>
                 </div>
                 <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
@@ -145,36 +135,40 @@ export default async function ChapterPage({ params }: Props) {
 
             <div className="mb-8 space-y-2">
                 <p className="text-gray-500 dark:text-gray-400">
-                    Published on: {new Date(chapterData.publishedAt).toLocaleDateString()}
+                    Published on: {publishedDate?.toLocaleDateString() ?? chapterData.publishedAt}
                 </p>
             </div>
 
             <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
                 <div className="flex justify-between gap-4">
-                    {!firstChapter && (
-                        <a
-                            href={`/wn/${title}/${volume}/chapter-${prevChapterNum}`}
+                    {navigation.previous && (
+                        <Link
+                            href={chapterHref(title, navigation.previous)}
                             className="flex items-center px-4 py-2 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-blue-600 dark:text-blue-300 rounded-lg transition-colors"
                         >
                             <ArrowLeft className="mr-2 h-5 w-5" />
                             <div className="text-left">
-                                <span className="text-xs text-gray-500 dark:text-gray-400">Previous</span>
-                                <p className="font-medium">{chapterData.chapterAlias} {prevChapterNum}</p>
+                                <span className="text-xs text-gray-500 dark:text-gray-400">
+                                    {novel.volumeAlias} {navigation.previous.volume} · Previous
+                                </span>
+                                <p className="font-medium">{chapterData.chapterAlias} {navigation.previous.chapter}</p>
                             </div>
-                        </a>
+                        </Link>
                     )}
 
-                    {!finalChapter && (
-                        <a
-                            href={`/wn/${title}/${volume}/chapter-${nextChapterNum}`}
+                    {navigation.next && (
+                        <Link
+                            href={chapterHref(title, navigation.next)}
                             className="flex items-center px-4 py-2 bg-blue-50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 text-blue-600 dark:text-blue-300 rounded-lg transition-colors ml-auto"
                         >
                             <div className="text-right">
-                                <span className="text-xs text-gray-500 dark:text-gray-400">Next</span>
-                                <p className="font-medium">{chapterData.chapterAlias} {nextChapterNum}</p>
+                                <span className="text-xs text-gray-500 dark:text-gray-400">
+                                    Next · {novel.volumeAlias} {navigation.next.volume}
+                                </span>
+                                <p className="font-medium">{chapterData.chapterAlias} {navigation.next.chapter}</p>
                             </div>
                             <ArrowRight className="ml-2 h-5 w-5" />
-                        </a>
+                        </Link>
                     )}
                 </div>
             </div>
@@ -187,8 +181,9 @@ export async function generateStaticParams() {
     const params: Array<{ title: string; volume: string; chapter: string }> = [];
 
     for (const novel of novels) {
-        const { getNovelData } = await import('@/lib/webnovel');
         const novelData = await getNovelData(novel.slug);
+        if (!novelData) continue;
+
         for (const volume of novelData.volumes) {
             for (const chapter of volume.chapters) {
                 params.push({
