@@ -132,20 +132,20 @@ export default async function NovelPage({ params }: Props) {
                                         >
                                             <div className="flex gap-3 items-center w-full">
                                                 {/* Chapter Number */}
-                                                <span className="text-gray-500 dark:text-gray-500 shrink-0">
+                                                <span className="text-gray-500 dark:text-gray-400 shrink-0">
                                                     {novel.chapterAlias} {chapter.chapter}
                                                 </span>
 
                                                 {/* Chapter Title */}
                                                 {chapter.title && (
-                                                    <span className="text-sm text-gray-500 dark:text-gray-500 truncate min-w-0 flex-1">
+                                                    <span className="text-sm text-gray-500 dark:text-gray-400 truncate min-w-0 flex-1">
                                                       {chapter.title}
                                                     </span>
                                                 )}
 
                                                 {/* Publish Date */}
                                                 {chapter.publishedAt && (
-                                                    <span className="text-sm text-gray-500 dark:text-gray-400 font-mono text-right shrink-0 ml-auto">
+                                                    <span className="text-sm text-gray-600 dark:text-gray-400 font-mono text-right shrink-0 ml-auto">
                                                       {formatPublishedDate(chapter.publishedAt)}
                                                     </span>
                                                 )}
@@ -175,7 +175,7 @@ export default async function NovelPage({ params }: Props) {
 
                                             {/* Publish Date */}
                                             {chapter.publishedAt && (
-                                                <span className="text-sm text-gray-500 dark:text-gray-400 font-mono text-right shrink-0 ml-auto">
+                                                <span className="text-sm text-gray-600 dark:text-gray-400 font-mono text-right shrink-0 ml-auto">
               {formatPublishedDate(chapter.publishedAt)}
             </span>
                                             )}

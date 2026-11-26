@@ -18,7 +18,7 @@ export function Header({navLinks} : {navLinks: {href: string, title: string}[]})
     return (
         <header className="md:flex items-center justify-between py-10">
             <div>
-                <div className="text-primary-color dark:text-primary-color-dark flex items-center justify-between text-xl font-semibold">
+                <div className="text-foreground flex items-center justify-between text-xl font-semibold">
                     <Link href='/'  passHref legacyBehavior>
                         <a>
                             <Typewriter

@@ -40,11 +40,11 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
                 </time>
                 <h1 className="text-3xl font-bold mb-2">{data.title}</h1>
                 <p className={"text-gray-600 dark:text-gray-400 text-sm mb-2"}>
-                    <span className={"text-gray-500"}>by</span> <span className={"text-blue-500"}>{data.author}</span>
+                    <span className={"text-gray-500 dark:text-gray-400"}>by</span> <span className={"text-blue-600 dark:text-blue-400"}>{data.author}</span>
                     {data.category && (
                         <>
                             &nbsp; <b>/</b> &nbsp;
-                            <span className={"text-gray-500"}>in</span> <span className={"text-blue-500"}>{data.category}</span>
+                            <span className={"text-gray-500 dark:text-gray-400"}>in</span> <span className={"text-blue-600 dark:text-blue-400"}>{data.category}</span>
                         </>
                     )}
                 </p>
@@ -71,7 +71,7 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
                     <p className="text-gray-600 dark:text-gray-400 text-xs flex items-center">
                         <>
                             <span className={''}><b>Last updated:</b> &nbsp;</span>
-                            <time dateTime={data.updatedAt} className={"text-gray-500"}>
+                            <time dateTime={data.updatedAt} className={"text-gray-500 dark:text-gray-400"}>
                                 { format(parseISO(data.updatedAt), "LLLL d, yyyy") }
                             </time>
                         </>

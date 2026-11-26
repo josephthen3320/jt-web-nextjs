@@ -63,7 +63,7 @@ export default async function WebnovelHome() {
 
                                         <div className="flex justify-between items-center text-sm">
                                             <div className="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900/20 px-3 py-1 rounded-full">
-                            <span className="text-blue-600 dark:text-blue-300">
+                            <span className="text-blue-700 dark:text-blue-300">
                                 {novel.volumes} Volume{novel.volumes !== 1 && 's'}
                             </span>
                                             </div>

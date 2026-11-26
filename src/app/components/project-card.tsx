@@ -52,7 +52,7 @@ const Card = ({
                             <div className="mx-1.5">
                                 <a href={href} target="_blank" rel="noopener noreferrer">
                                     <FaExternalLinkAlt
-                                        className="text-xl text-gray-500 transition duration-200 hover:rotate-180 hover:text-blue-400"/>
+                                        className="text-xl text-gray-500 transition duration-200 hover:rotate-180 hover:text-blue-600"/>
                                 </a>
                             </div>
                         )}
@@ -60,7 +60,7 @@ const Card = ({
                             <div className="mx-1.5">
                                 <a href={github} target="_blank" rel="noopener noreferrer">
                                     <FaGithub
-                                        className="text-xl text-gray-500 transition duration-200 hover:rotate-180 hover:text-blue-400"/>
+                                        className="text-xl text-gray-500 transition duration-200 hover:rotate-180 hover:text-blue-600"/>
                                 </a>
                             </div>
                         )}
@@ -68,7 +68,7 @@ const Card = ({
                             <div className="mx-1.5">
                                 <a href={youtube} target="_blank" rel="noopener noreferrer">
                                     <FaYoutube
-                                        className="text-2xl text-gray-500 transition duration-200 hover:rotate-180 hover:text-blue-400"/>
+                                        className="text-2xl text-gray-500 transition duration-200 hover:rotate-180 hover:text-blue-600"/>
                                 </a>
                             </div>
                         )}
@@ -86,7 +86,7 @@ const Card = ({
                 <p className="prose text-sm mb-3 max-w-none text-gray-500 dark:text-gray-400">{description}</p>
 
                 <div className="flex flex-row justify-between">
-                    <div className="text-sm text-gray-400">
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
                         {tech.map((t: string, i: number, arr: []) => (
                             i + 1 === arr.length ? `${t}` : `${t} • `
                         ))}

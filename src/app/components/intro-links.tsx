@@ -26,7 +26,7 @@ export function IntroLinks() {
                                 </svg>
                                 <span className="pr-6 text-gray-900 dark:text-gray-100">What I built</span>
                               </span>
-                              <span className="pl-6 text-amber-400 transition duration-200 group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                              <span className="pl-6 text-amber-700 dark:text-amber-400 transition duration-200 group-hover:text-gray-900 dark:group-hover:text-gray-100">
                                 Projects&nbsp;&rarr;
                               </span>
                             </span>
@@ -55,7 +55,7 @@ export function IntroLinks() {
                                 </svg>
                                 <span className="pr-6 text-gray-900 dark:text-gray-100">Publications&nbsp;&nbsp;&nbsp;</span>
                               </span>
-                              <span className="pl-6 text-indigo-400 transition duration-200 group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                              <span className="pl-6 text-indigo-600 dark:text-indigo-400 transition duration-200 group-hover:text-gray-900 dark:group-hover:text-gray-100">
                                 Catalogue&nbsp;&rarr;
                               </span>
                             </span>
@@ -88,7 +88,7 @@ export function IntroLinks() {
                                   My Videos
                                 </span>
                               </span>
-                              <span className="pl-6 text-pink-500 transition duration-200 group-hover:text-gray-900 dark:group-hover:text-gray-100">
+                              <span className="pl-6 text-pink-700 dark:text-pink-400 transition duration-200 group-hover:text-gray-900 dark:group-hover:text-gray-100">
                                 Youtube&nbsp;&rarr;
                               </span>
                             </span>

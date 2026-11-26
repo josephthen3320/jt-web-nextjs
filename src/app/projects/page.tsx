@@ -52,7 +52,7 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <p className="text-sm text-gray-600 flex items-center hover:text-gray-500 dark:hover:text-gray-500">
+                        <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center hover:text-gray-900 dark:hover:text-gray-200">
                             <FaGithub /> &nbsp;&nbsp;https://github.com/josephthen3320
                         </p>
                     </Link>

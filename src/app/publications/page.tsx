@@ -54,7 +54,7 @@ export default function Publications() {
                     Some of my recent and featured publications - most are peer reviewed!
                 </p>
                 <Link href="https://orcid.org/0000-0002-7584-0245" target="_blank" rel="noopener noreferrer">
-                <p className={"text-sm text-gray-600 dark:text-gray-400 flex items-center hover:text-green-700 dark:hover:text-green-700"}>
+                <p className={"text-sm text-gray-600 dark:text-gray-400 flex items-center hover:text-green-700 dark:hover:text-green-400"}>
                     <SiOrcid></SiOrcid> &nbsp;&nbsp;https://orcid.org/0000-0002-7584-0245
                 </p>
                 </Link>

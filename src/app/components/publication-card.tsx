@@ -28,7 +28,7 @@ const Card = ({
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    <FaExternalLinkAlt className="text-xl text-gray-500 transition duration-200 hover:rotate-180 hover:text-blue-400"/>
+                                    <FaExternalLinkAlt className="text-xl text-gray-500 transition duration-200 hover:rotate-180 hover:text-blue-600"/>
                                 </a>
                             </div>
                         )}
@@ -41,7 +41,7 @@ const Card = ({
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    <FaRegEnvelope className="text-xl text-gray-500 transition duration-200 hover:rotate-180 hover:text-blue-400" />
+                                    <FaRegEnvelope className="text-xl text-gray-500 transition duration-200 hover:rotate-180 hover:text-blue-600" />
                                 </a>
                             </div>
                         )}
@@ -52,7 +52,7 @@ const Card = ({
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    <FaUpRightFromSquare className="text-xl text-gray-500 transition duration-200 hover:rotate-180 hover:text-blue-400" />
+                                    <FaUpRightFromSquare className="text-xl text-gray-500 transition duration-200 hover:rotate-180 hover:text-blue-600" />
                                 </a>
                             </div>
                         )}
@@ -61,7 +61,7 @@ const Card = ({
 
                 {/* Publication Type */}
                 {type && (
-                    <h6 className={"text-xs uppercase text-gray-600"}>{type}
+                    <h6 className={"text-xs uppercase text-gray-600 dark:text-gray-400"}>{type}
                     </h6>
                 )}
 
@@ -86,7 +86,7 @@ const Card = ({
                 )}
 
                 {/* Publishing Metadata (Date & Publisher) */}
-                <div className={"mb-5 text-xs text-gray-400"}>
+                <div className={"mb-5 text-xs text-gray-600 dark:text-gray-400"}>
                     <div className="mb-2 flex items-center">
                         <FaCalendarAlt></FaCalendarAlt>&nbsp;&nbsp;
                         {publishedDate}
@@ -99,12 +99,12 @@ const Card = ({
                 </div>
 
                 {/* Publication Tags Parsing */}
-                <div className="flex flex-wrap gap-2 text-xs text-gray-400">
+                <div className="flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-400">
                     {tags.split(",")
                         .map((tag: string, index: Key | null | undefined) => (
                             <span
                                 key={index}
-                                className="inline-flex items-center justify-center rounded-lg border border-pink-600 py-1 px-3 text-xs font-medium text-pink-600 uppercase transition duration-500 ease-in-out hover:bg-pink-600 hover:text-gray-100 dark:hover:text-gray-900"
+                                className="inline-flex items-center justify-center rounded-lg border border-pink-700 py-1 px-3 text-xs font-medium text-pink-700 dark:text-pink-400 dark:border-pink-400 uppercase transition duration-500 ease-in-out hover:bg-pink-700 hover:text-white"
                             >
                                 {tag.trim()} {/* Trim to remove any extra spaces */}
                             </span>

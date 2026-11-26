@@ -1,10 +1,6 @@
-import fs from "fs";
-import path from "path";
 import Link from "next/link";
-import matter from "gray-matter";
-import { Key } from "react";
-import {format, parseISO} from "date-fns";
 import type {Metadata} from "next";
+import { getAllPosts, tagAnchor } from "@/lib/posts";
 
 export const metadata: Metadata = {
     title: "Joseph Thenara - Blog",
@@ -12,24 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default function BlogList() {
-    const postsDir = path.join(process.cwd(), "src/app/posts");
-    const filenames = fs.readdirSync(postsDir);
-
-    const posts = filenames
-        .map((filename) => {
-            const filePath = path.join(postsDir, filename);
-            const fileContent = fs.readFileSync(filePath, "utf8");
-            const { data } = matter(fileContent);
-            return {
-                slug: filename.replace(".md", ""),
-                title: data.title,
-                description: data.description,
-                date: format(parseISO(data.publishedAt), "LLLL d, yyyy"),
-                publishedAt: data.publishedAt, // Keep ISO date for sorting
-                tags: data.tags
-            };
-        })
-        .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()); // Sorting newest to oldest
+    const posts = getAllPosts();
 
     return (
         <>
@@ -50,21 +29,21 @@ export default function BlogList() {
                                 className="p-5 rounded-md border border-gray-200 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-900 transition duration-300"
                             >
                                 <p className="text-gray-500 dark:text-gray-400 text-xs mb-1.5">{post.date}</p>
-                                <Link href={`/blog/${post.slug}`} className="text-gray-900 hover:text-pink-600 dark:text-gray-50">
+                                <Link href={`/blog/${post.slug}`} className="text-gray-900 hover:text-pink-700 dark:text-gray-50 dark:hover:text-pink-400">
                                     <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
                                 </Link>
-                                <p className="text-gray-600 dark:text-gray-500 mt-2 mb-3">{post.description}</p>
+                                <p className="text-gray-600 dark:text-gray-400 mt-2 mb-3">{post.description}</p>
                                 {/* Tags Rendering */}
                                 <div className="flex flex-wrap gap-2 text-xs text-gray-500 dark:text-gray-400">
-                                    {post.tags.split(",")
-                                        .map((tag: string, index: Key | null | undefined) => (
-                                            <span
-                                                key={index}
-                                                className="inline-flex items-center justify-center rounded-lg border border-pink-600 py-1 px-3 text-xs font-medium text-pink-600 uppercase transition duration-500 ease-in-out hover:bg-pink-600 hover:text-gray-100 dark:hover:text-gray-900"
-                                            >
-                                                {tag.trim()} {/* Trim to remove any extra spaces */}
-                                            </span>
-                                        ))}
+                                    {post.tags.map((tag) => (
+                                        <Link
+                                            key={tag}
+                                            href={`/tags#${tagAnchor(tag)}`}
+                                            className="inline-flex items-center justify-center rounded-lg border border-pink-700 py-1 px-3 text-xs font-medium text-pink-700 dark:text-pink-400 dark:border-pink-400 uppercase transition duration-500 ease-in-out hover:bg-pink-700 hover:text-white"
+                                        >
+                                            {tag}
+                                        </Link>
+                                    ))}
                                 </div>
                             </div>
                         ))}

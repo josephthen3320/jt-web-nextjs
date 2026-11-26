@@ -8,7 +8,7 @@ export function AboutMe() {
         <div className="pt-6">
             <h1 className="pb-6 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
                 Hi, I am{' '}
-                <span className="text-primary-color-500 dark:text-primary-color-dark-500">Joseph</span>
+                <span className="text-pink-700 dark:text-pink-400">Joseph</span>
             </h1>
             <p className="pt-5 text-lg text-gray-600 dark:text-gray-300">
                 An aspiring computer scientist who is passionate about immersive technologies, such as Virtual and Mixed Realities (VR/MR).
@@ -20,11 +20,11 @@ export function AboutMe() {
                     animate={true}
                     type="box"
                     show={true}
-                    color="#DE1D8D"
+                    color="#c6005c"
                     animationDelay={1000}
                     animationDuration={2500}
                 >
-                    <span className={"hover:text-blue-400"}>caffeine, cats, and contemplation</span> &nbsp;
+                    <span className={"hover:text-blue-600 dark:hover:text-blue-400"}>caffeine, cats, and contemplation</span> &nbsp;
                 </RoughNotation>
                 - welcome to my digital playground for thoughts and ideas. {' '}
             </p>
