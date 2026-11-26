@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
 import Typewriter from 'typewriter-effect';
+import { ThemeToggle } from './theme-toggle';
 // import { useSession, signIn, signOut } from "next-auth/react"
 
 export function Header({navLinks} : {navLinks: {href: string, title: string}[]}) {
@@ -45,6 +46,7 @@ export function Header({navLinks} : {navLinks: {href: string, title: string}[]})
                         </Link>
                     ))}
                 </nav>
+                <ThemeToggle />
             </div>
         </header>
     )

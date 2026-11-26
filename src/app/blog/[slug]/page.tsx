@@ -35,16 +35,16 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
     return (
         <div className="max-w-2xl mx-auto p-5">
             <div className={"text-center mb-8"}>
-                <time dateTime={data.publishedAt} className={"mb-1 text-xs text-gray-600"}>
+                <time dateTime={data.publishedAt} className={"mb-1 text-xs text-gray-600 dark:text-gray-400"}>
                     { format(parseISO(data.publishedAt), "LLLL d, yyyy") }
                 </time>
                 <h1 className="text-3xl font-bold mb-2">{data.title}</h1>
-                <p className={"text-gray-600 text-sm mb-2"}>
-                    <span className={"text-gray-400"}>by</span> <span className={"text-blue-500"}>{data.author}</span>
+                <p className={"text-gray-600 dark:text-gray-400 text-sm mb-2"}>
+                    <span className={"text-gray-500"}>by</span> <span className={"text-blue-500"}>{data.author}</span>
                     {data.category && (
                         <>
                             &nbsp; <b>/</b> &nbsp;
-                            <span className={"text-gray-400"}>in</span> <span className={"text-blue-500"}>{data.category}</span>
+                            <span className={"text-gray-500"}>in</span> <span className={"text-blue-500"}>{data.category}</span>
                         </>
                     )}
                 </p>
@@ -53,14 +53,14 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
 
             {/* Show estimated reading time */}
             <div className="mb-2 flex justify-end">
-                <p className="text-gray-600 text-xs flex items-center">
+                <p className="text-gray-600 dark:text-gray-400 text-xs flex items-center">
                     <FaClock className="mr-1" />
                     {readingTime} min
                 </p>
             </div>
 
             <div
-                className="mt-4 prose text-gray-400 prose-invert"
+                className="mt-4 prose dark:prose-invert"
                 dangerouslySetInnerHTML={{ __html: contentHtml }}
             />
 
@@ -68,10 +68,10 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
 
             {data.updatedAt && (
                 <div className="mt-16 flex">
-                    <p className="text-gray-600 text-xs flex items-center">
+                    <p className="text-gray-600 dark:text-gray-400 text-xs flex items-center">
                         <>
                             <span className={''}><b>Last updated:</b> &nbsp;</span>
-                            <time dateTime={data.updatedAt} className={"text-gray-400"}>
+                            <time dateTime={data.updatedAt} className={"text-gray-500"}>
                                 { format(parseISO(data.updatedAt), "LLLL d, yyyy") }
                             </time>
                         </>

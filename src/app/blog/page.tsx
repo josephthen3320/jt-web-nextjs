@@ -47,15 +47,15 @@ export default function BlogList() {
                         {posts.map((post) => (
                             <div
                                 key={post.slug}
-                                className="p-5 hover:bg-gray-900 rounded-md border border-gray-800 transition duration-300"
+                                className="p-5 rounded-md border border-gray-200 hover:bg-gray-50 dark:border-gray-800 dark:hover:bg-gray-900 transition duration-300"
                             >
-                                <p className="text-gray-400 text-xs mb-1.5">{post.date}</p>
-                                <Link href={`/blog/${post.slug}`} className="text-gray-50 hover:text-pink-600">
+                                <p className="text-gray-500 dark:text-gray-400 text-xs mb-1.5">{post.date}</p>
+                                <Link href={`/blog/${post.slug}`} className="text-gray-900 hover:text-pink-600 dark:text-gray-50">
                                     <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
                                 </Link>
-                                <p className="text-gray-500 mt-2 mb-3">{post.description}</p>
+                                <p className="text-gray-600 dark:text-gray-500 mt-2 mb-3">{post.description}</p>
                                 {/* Tags Rendering */}
-                                <div className="flex flex-wrap gap-2 text-xs text-gray-400">
+                                <div className="flex flex-wrap gap-2 text-xs text-gray-500 dark:text-gray-400">
                                     {post.tags.split(",")
                                         .map((tag: string, index: Key | null | undefined) => (
                                             <span

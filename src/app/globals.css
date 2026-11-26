@@ -1,15 +1,19 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* "dark" is hard-coded on <html>, so the dark: utilities must key off that
-   class. Without this variant Tailwind v4 compiles them into
-   @media (prefers-color-scheme: dark) and the class on <html> does nothing. */
+/* Dark mode is class-based: the init script in the root layout puts `dark` on
+   <html> before first paint and the header toggle flips it. Without this
+   variant Tailwind v4 compiles dark: to @media (prefers-color-scheme: dark)
+   and the class would be ignored. */
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* The site is dark-only ("dark" is hard-coded on <html>), so the surface
-     colors must not follow the OS preference or text and background drift
-     apart on light-mode machines. */
+  --background: #ffffff;
+  --foreground: #171717;
+  color-scheme: light;
+}
+
+:root.dark {
   --background: #0a0a0a;
   --foreground: #ededed;
   color-scheme: dark;
