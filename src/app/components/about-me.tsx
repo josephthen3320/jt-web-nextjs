@@ -8,7 +8,7 @@ export function AboutMe() {
         <div className="pt-6">
             <h1 className="pb-6 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
                 Hi, I am{' '}
-                <span className="text-pink-700 dark:text-pink-400">Joseph</span>
+                <span className="text-pink-700 dark:text-pink-500">Joseph</span>
             </h1>
             <p className="pt-5 text-lg text-gray-600 dark:text-gray-300">
                 An aspiring computer scientist who is passionate about immersive technologies, such as Virtual and Mixed Realities (VR/MR).
