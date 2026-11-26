@@ -14,7 +14,7 @@ import Image from "next/image";
 const contacts = [
     {
         label: "Website",
-        href: "https://josephthen.vercel.app",
+        href: "https://josephthen.affocatto.dev",
         icon: <FaGlobe />,
     },
     {
