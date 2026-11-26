@@ -3,6 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { format, parseISO } from 'date-fns';
 import { toTagList } from '@/lib/tags';
+import { toDateString } from '@/lib/dates';
 
 export interface PostSummary {
     slug: string;
@@ -29,13 +30,14 @@ export function getAllPosts(): PostSummary[] {
         .map((filename) => {
             const filePath = path.join(postsDirectory, filename);
             const { data } = matter(fs.readFileSync(filePath, 'utf8'));
+            const publishedAt = toDateString(data.publishedAt);
 
             return {
                 slug: filename.replace('.md', ''),
                 title: data.title,
                 description: data.description,
-                date: format(parseISO(data.publishedAt), 'LLLL d, yyyy'),
-                publishedAt: data.publishedAt,
+                date: format(parseISO(publishedAt), 'LLLL d, yyyy'),
+                publishedAt,
                 tags: toTagList(data.tags),
             };
         })

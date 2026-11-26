@@ -7,6 +7,7 @@ import { remark } from "remark";
 import html from "remark-html";
 import remarkGfm from "remark-gfm";
 import {FaClock} from "react-icons/fa"; // GitHub Flavored Markdown
+import { toDateString } from "@/lib/dates";
 
 
 export default async function BlogPost(props: { params: Promise<{ slug: string }> }) {
@@ -22,6 +23,8 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
     }
 
     const { data, content } = matter(fileContent);
+    const publishedAt = toDateString(data.publishedAt);
+    const updatedAt = data.updatedAt ? toDateString(data.updatedAt) : "";
     const processedContent = await remark()
         .use(remarkGfm)
         .use(html)
@@ -35,8 +38,8 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
     return (
         <div className="max-w-2xl mx-auto p-5">
             <div className={"text-center mb-8"}>
-                <time dateTime={data.publishedAt} className={"mb-1 text-xs text-gray-600 dark:text-gray-400"}>
-                    { format(parseISO(data.publishedAt), "LLLL d, yyyy") }
+                <time dateTime={publishedAt} className={"mb-1 text-xs text-gray-600 dark:text-gray-400"}>
+                    { format(parseISO(publishedAt), "LLLL d, yyyy") }
                 </time>
                 <h1 className="text-3xl font-bold mb-2">{data.title}</h1>
                 <p className={"text-gray-600 dark:text-gray-400 text-sm mb-2"}>
@@ -66,13 +69,13 @@ export default async function BlogPost(props: { params: Promise<{ slug: string }
 
 
 
-            {data.updatedAt && (
+            {updatedAt && (
                 <div className="mt-16 flex">
                     <p className="text-gray-600 dark:text-gray-400 text-xs flex items-center">
                         <>
                             <span className={''}><b>Last updated:</b> &nbsp;</span>
-                            <time dateTime={data.updatedAt} className={"text-gray-500 dark:text-gray-400"}>
-                                { format(parseISO(data.updatedAt), "LLLL d, yyyy") }
+                            <time dateTime={updatedAt} className={"text-gray-500 dark:text-gray-400"}>
+                                { format(parseISO(updatedAt), "LLLL d, yyyy") }
                             </time>
                         </>
                     </p>

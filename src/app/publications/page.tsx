@@ -8,6 +8,7 @@ import {format, parseISO} from "date-fns";
 import matter from "gray-matter";
 import type {Metadata} from "next";
 import { toTagList } from "@/lib/tags";
+import { toDateString } from "@/lib/dates";
 
 export const metadata: Metadata = {
     title: "Joseph Thenara - Publications",
@@ -30,7 +31,7 @@ export default function Publications() {
             title: data.title,
             description: data.description,
             abstract: data.abstract,
-            date: format(parseISO(data.publishedAt), "LLLL d, yyyy"),
+            date: format(parseISO(toDateString(data.publishedAt)), "LLLL d, yyyy"),
             tags: toTagList(data.tags),
             type: data.type,
             authors: data.authors,
