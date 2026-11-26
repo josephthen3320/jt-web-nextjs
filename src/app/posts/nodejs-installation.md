@@ -3,7 +3,12 @@ title: 'Node.js Installation Guide for Windows Using fnm'
 author: 'Joseph Then'
 publishedAt: '2025-04-30'
 description: 'A comprehensive guide to installing Node.js on Windows using fnm (Fast Node Manager), with options for npm and pnpm package managers.'
-tags: "Node.js, JavaScript, Windows, Development, Tools"
+tags:
+  - Node.js
+  - JavaScript
+  - Windows
+  - Development
+  - Tools
 category: 'Tech Guide'
 ---
 

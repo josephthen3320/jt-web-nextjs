@@ -6,5 +6,5 @@ tech:
   - MRTK
   - C#
   - Vuforia
-imgSrc: p_holo-ptcg_2.gif
+imgSrc: /projects/catalogue/p_holo-ptcg_2.gif
 ---

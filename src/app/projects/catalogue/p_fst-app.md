@@ -7,5 +7,5 @@ tech:
   - C#
 award: Distinguished Final Year Project Award
 youtube: https://www.youtube.com/watch?v=9BV7fYqjp3g
-imgSrc: p_fst-app.jpg
+imgSrc: /projects/catalogue/p_fst-app.jpg
 ---

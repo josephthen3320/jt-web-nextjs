@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { format, parseISO } from 'date-fns';
+import { toTagList } from '@/lib/tags';
 
 export interface PostSummary {
     slug: string;
@@ -16,18 +17,10 @@ export interface PostSummary {
 
 const postsDirectory = path.join(process.cwd(), 'src/app/posts');
 
-/** Anchor-safe id for a tag: "Node.js" -> "node-js". */
-export function tagAnchor(tag: string) {
-    return tag
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-|-$/g, '');
-}
-
 /**
- * Posts are plain markdown in src/app/posts. Tags are authored as a
- * comma-separated frontmatter string, so they are normalised to an array here
- * and every page that lists posts consumes the same shape.
+ * Posts are plain markdown in src/app/posts. Tags are YAML lists written by the
+ * CMS (older entries used a comma-separated string); toTagList normalises both
+ * so every page that lists posts consumes the same shape.
  */
 export function getAllPosts(): PostSummary[] {
     return fs
@@ -43,12 +36,7 @@ export function getAllPosts(): PostSummary[] {
                 description: data.description,
                 date: format(parseISO(data.publishedAt), 'LLLL d, yyyy'),
                 publishedAt: data.publishedAt,
-                tags: [...new Set(
-                    String(data.tags ?? '')
-                        .split(',')
-                        .map((tag) => tag.trim())
-                        .filter(Boolean)
-                )],
+                tags: toTagList(data.tags),
             };
         })
         .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());

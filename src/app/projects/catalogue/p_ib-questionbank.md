@@ -5,5 +5,5 @@ tech:
   - React
   - Next.js
 github: https://github.com/josephthen3320/ib-questionbank
-imgSrc: p_ib-questionbank.png
+imgSrc: /projects/catalogue/p_ib-questionbank.png
 ---

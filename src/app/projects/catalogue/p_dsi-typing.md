@@ -5,5 +5,5 @@ tech:
   - React
   - Next.js
 # github: https://github.com/josephthen3320/ib-questionbank
-imgSrc: p_dsi-typing.jpg
+imgSrc: /projects/catalogue/p_dsi-typing.jpg
 ---

@@ -7,7 +7,6 @@ import {
     FaAward,
     FaCalendarAlt, FaExternalLinkSquareAlt
 } from "react-icons/fa";
-import { Key } from "react";
 import {FaUpRightFromSquare} from "react-icons/fa6";
 
 
@@ -100,15 +99,14 @@ const Card = ({
 
                 {/* Publication Tags Parsing */}
                 <div className="flex flex-wrap gap-2 text-xs text-gray-600 dark:text-gray-400">
-                    {tags.split(",")
-                        .map((tag: string, index: Key | null | undefined) => (
-                            <span
-                                key={index}
-                                className="inline-flex items-center justify-center rounded-lg border border-pink-700 py-1 px-3 text-xs font-medium text-pink-700 dark:text-pink-400 dark:border-pink-400 uppercase transition duration-500 ease-in-out hover:bg-pink-700 hover:text-white"
-                            >
-                                {tag.trim()} {/* Trim to remove any extra spaces */}
-                            </span>
-                        ))}
+                    {tags.map((tag: string) => (
+                        <span
+                            key={tag}
+                            className="inline-flex items-center justify-center rounded-lg border border-pink-700 py-1 px-3 text-xs font-medium text-pink-700 dark:text-pink-400 dark:border-pink-400 uppercase transition duration-500 ease-in-out hover:bg-pink-700 hover:text-white"
+                        >
+                            {tag}
+                        </span>
+                    ))}
                 </div>
             </div>
         </div>

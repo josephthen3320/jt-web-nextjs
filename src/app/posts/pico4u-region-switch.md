@@ -3,7 +3,12 @@ title: 'How to Switch Pico 4 VR Headset from China to Global Firmware'
 author: 'Joseph Then'
 publishedAt: '2025-04-28'
 description: 'Step-by-step guide to converting your Pico 4 VR headset from China region firmware to the global version, including important precautions and troubleshooting tips.'
-tags: "VR, Pico 4, Firmware, Tutorial, Virtual Reality"
+tags:
+  - VR
+  - Pico 4
+  - Firmware
+  - Tutorial
+  - Virtual Reality
 category: "Tech Guide"
 updatedAt: '2025-05-02'
 ---

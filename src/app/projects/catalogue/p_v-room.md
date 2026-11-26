@@ -8,6 +8,6 @@ tech:
   - OpenXR
   - SteamVR
 award: Vice Chancellor's Medal 2022 (University of Nottingham)
-imgSrc: p_v-room.jpeg
+imgSrc: /projects/catalogue/p_v-room.jpeg
 establishDate: 08/2020
 ---

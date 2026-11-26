@@ -25,6 +25,14 @@ export default function Projects() {
         const fileContent = fs.readFileSync(filePath, "utf8");
         const { data } = matter(fileContent);
 
+        // The CMS uploads to public/projects/catalogue and stores an absolute
+        // path; hand-written entries still store just the file name.
+        const imgSrc = data.imgSrc
+            ? /^(\/|https?:\/\/)/.test(data.imgSrc)
+                ? data.imgSrc
+                : `/projects/catalogue/${data.imgSrc}`
+            : "/projects/catalogue/placeholder_bk.png";
+
         return {
             title: data.title,
             description: data.description,
@@ -33,7 +41,7 @@ export default function Projects() {
             youtube: data.youtube,
             href: data.href,
             github: data.github,
-            imgSrc: data.imgSrc,
+            imgSrc,
         };
     });
 

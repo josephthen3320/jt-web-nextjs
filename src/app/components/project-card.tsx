@@ -33,7 +33,7 @@ const Card = ({
                 className="select-none"
             >
                 <Image
-                    src={`/projects/catalogue/${imgSrc || "placeholder_bk.png"}`}
+                    src={imgSrc || "/projects/catalogue/placeholder_bk.png"}
                     alt={title}
                     width={544}
                     height={300}

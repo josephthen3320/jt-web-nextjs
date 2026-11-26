@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type {Metadata} from "next";
-import { getAllPosts, tagAnchor } from "@/lib/posts";
+import { getAllPosts } from "@/lib/posts";
+import { tagAnchor } from "@/lib/tags";
 
 export const metadata: Metadata = {
     title: "Joseph Thenara - Blog",

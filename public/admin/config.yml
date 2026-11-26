@@ -1,0 +1,119 @@
+# Sveltia CMS - Git-based editor for this site.
+# Open /admin/ to add, edit or remove content. Saves become commits on a
+# branch, the site is rebuilt by Vercel, and the pages pick up the new files.
+#
+# Authentication uses a GitHub OAuth App. The token exchange runs in
+# src/app/api/auth + src/app/api/callback, so the deployment needs
+# GITHUB_OAUTH_CLIENT_ID and GITHUB_OAUTH_CLIENT_SECRET. If the site moves to
+# a custom domain, update `base_url` here and the OAuth App callback URL
+# (https://<domain>/api/callback) to match.
+
+backend:
+  name: github
+  repo: josephthen3320/jt-web-nextjs
+  branch: main
+  base_url: https://josephthen.affocatto.dev/api
+  #base_url: https://josephthen.vercel.app/api
+
+site_url: https://josephthen.affocatto.dev
+#site_url: https://josephthen.vercel.app
+
+# Saves go to a branch and open a pull request instead of committing to main.
+publish_mode: editorial_workflow
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: blog
+    label: Blog posts
+    label_singular: Blog post
+    folder: src/app/posts
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    media_folder: public/blog-data
+    public_folder: /blog-data
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: author, label: Author, widget: string, default: Joseph Then }
+      - name: publishedAt
+        label: Published on
+        widget: datetime
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        format: "YYYY-MM-DD"
+      - name: updatedAt
+        label: Last updated
+        widget: datetime
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        format: "YYYY-MM-DD"
+        required: false
+      - { name: description, label: Summary, widget: text }
+      - { name: category, label: Category, widget: string }
+      - { name: tags, label: Tags, widget: list, required: false }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: src/app/projects/catalogue
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: "p_{{slug}}"
+    media_folder: public/projects/catalogue
+    public_folder: /projects/catalogue
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: text }
+      - { name: tech, label: Tech stack, widget: list, required: false }
+      - { name: award, label: Award, widget: string, required: false }
+      - { name: github, label: GitHub URL, widget: string, required: false }
+      - { name: href, label: Live URL, widget: string, required: false }
+      - { name: youtube, label: YouTube URL, widget: string, required: false }
+      - name: imgSrc
+        label: Cover image
+        widget: image
+        required: false
+        hint: Uploads are stored in public/projects/catalogue.
+      - { name: establishDate, label: Established, widget: string, required: false, hint: Kept for existing entries; not rendered yet. }
+
+  - name: publications
+    label: Publications
+    label_singular: Publication
+    folder: src/app/publication-docs
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: "{{year}}-{{slug}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: authors, label: Authors, widget: string }
+      - name: publishedAt
+        label: Published on
+        widget: datetime
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        format: "YYYY-MM-DD"
+      - { name: publisher, label: Publisher, widget: string }
+      - { name: description, label: Summary, widget: text }
+      - { name: abstract, label: Abstract, widget: text, required: false }
+      - { name: tags, label: Tags, widget: list, required: false }
+      - name: type
+        label: Type
+        widget: select
+        options:
+          - Journal Article
+          - Conference Article
+          - Undergraduate Dissertation
+          - Book Chapter
+      - { name: award, label: Award, widget: string, required: false }
+      - { name: email, label: Contact email, widget: string, required: false }
+      - { name: doi, label: DOI URL, widget: string, required: false }
+      - { name: href, label: External URL, widget: string, required: false }

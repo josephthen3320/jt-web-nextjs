@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
-import { getAllPosts, tagAnchor, type PostSummary } from "@/lib/posts";
+import { getAllPosts, type PostSummary } from "@/lib/posts";
+import { tagAnchor } from "@/lib/tags";
 
 export const metadata: Metadata = {
     title: "Joseph Thenara - Tags",
